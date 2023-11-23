@@ -1,0 +1,28 @@
+@import 'vars';
+
+.landing-container {
+  text-align: center;
+  margin-top: 150px;
+  max-height: 100vh;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+p {
+  font-size: 1.2em;
+  color: $fontColor;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  margin: 0 10px;
+  cursor: pointer;
+}
