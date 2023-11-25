@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })
-export class LandingComponent {
+export class LandingComponent implements OnInit{
 
+  ngOnInit() {
+    const titleElement = document.querySelector('.app-title');
+    if (titleElement) {
+      setTimeout(() => {
+        titleElement.classList.add('tilted');
+      }, 1);
+    }
+  }
 }

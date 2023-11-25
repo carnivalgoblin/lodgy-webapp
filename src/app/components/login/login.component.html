@@ -1,8 +1,9 @@
-<app-navigation></app-navigation>
+<app-navigation [links]="navbarLinks"></app-navigation>
 
-<mat-card class="container login-container">
-  <mat-card-title>Login to Lodgy</mat-card-title>
-
+<div class="container login-container">
+  <h2 class="text">Login to</h2>
+  <h2 class="app-title-small">Peakorino</h2>
+  <br>
   <form (ngSubmit)="login()" #loginForm="ngForm">
     <mat-form-field class="form-group">
       <mat-label for="username">Username:</mat-label>
@@ -18,5 +19,4 @@
   </form>
   <br>
   <a routerLink="/register">No account? Register here!</a>
-
-</mat-card>
+</div>

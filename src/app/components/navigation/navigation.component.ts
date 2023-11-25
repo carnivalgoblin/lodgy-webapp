@@ -1,4 +1,4 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, Input} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs";
 
@@ -8,6 +8,9 @@ import {filter} from "rxjs";
   styleUrl: './navigation.component.scss'
 })
 export class NavigationComponent {
+
+  @Input() links: { path: string; label: string; }[] = [];
+
   isScrolled: boolean = false;
   isMobile: boolean = false;
   showNavigation: boolean = true;
@@ -20,6 +23,10 @@ export class NavigationComponent {
         // Check if the current route is the Landing page
         this.showNavigation = this.route.snapshot.firstChild?.routeConfig?.path !== '';
       });
+  }
+
+  ngOnInit() {
+    console.log(this.links)
   }
 
   @HostListener('window:scroll', [])

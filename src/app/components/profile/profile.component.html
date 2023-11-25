@@ -1,0 +1,13 @@
+<app-navigation [links]="navbarLinks"></app-navigation>
+
+<div class="container profile-container">
+  <h2 class="text">Welcome, </h2> <span class="app-title-small">USER</span>
+  <br><br>
+  <p class="text">This is your profile. You can see all your trips and your expenses here.</p>
+
+  <h3 class="text">Trips</h3>
+  <trip-card *ngFor="let trip of trips" [trip]="trip"></trip-card>
+
+  <h3 class="text">Expenses</h3>
+  <expense-card *ngFor="let expense of expenses" [expense]="expense"></expense-card>
+</div>

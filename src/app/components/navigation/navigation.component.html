@@ -1,9 +1,14 @@
 <div class="navbar" [ngClass]="{'mobile': isMobile, 'scrolled': isScrolled}">
-  <!-- Your navigation content goes here -->
+
   <ul>
-    <li><a routerLink="/">Home</a></li>
-    <li><a routerLink="/about">About</a></li>
-    <li><a routerLink="/contact">Contact</a></li>
-    <!-- Add more menu items as needed -->
+    <li *ngFor="let link of links">
+      <a class="nav-link" [routerLink]="link.path">{{ link.label }}</a>
+    </li>
   </ul>
+
+<!--  <ul>-->
+<!--    <li><a class="nav-link" routerLink="/">Home</a></li>-->
+<!--    <li><a class="nav-link" routerLink="/about">About</a></li>-->
+<!--    <li><a class="nav-link" routerLink="/contact">Contact</a></li>-->
+<!--  </ul>-->
 </div>

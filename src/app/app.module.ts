@@ -11,6 +11,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
+import { ProfileComponent } from './components/profile/profile.component';
+import {HttpClientModule} from "@angular/common/http";
+import { TripCardComponent } from './components/trip-card/trip-card.component';
+import { ExpenseCardComponent } from './components/expense-card/expense-card.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -18,7 +24,10 @@ import {MatInputModule} from "@angular/material/input";
     LandingComponent,
     RegisterComponent,
     LoginComponent,
-    NavigationComponent
+    NavigationComponent,
+    ProfileComponent,
+    TripCardComponent,
+    ExpenseCardComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +35,10 @@ import {MatInputModule} from "@angular/material/input";
     FormsModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    HttpClientModule,
+    NgOptimizedImage
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,9 +1,9 @@
 // COLORS
-$primary-color: #FAF0E4;
-$secondary-color: #9BCDD2;
-$tertiary-color: #FF8551;
-$quarternary-color: #FFDEDE;
-$background-color: #e2d78f;
+$primary-color: #ECF4D6;
+$secondary-color: #9AD0C2;
+$tertiary-color: #2D9596;
+$quarternary-color: #265073;
+$background-color: $secondary-color;
 
 // COLOR MODIFIERS (use filter)
 $darker: 85%;
@@ -19,7 +19,8 @@ $linkColor: #395B64;
 
 // NAVBAR
 
-$navbarBackgroundColor: rgb(85, 223, 75);
-$navbarBackgroundColorScrolled: rgb(75, 134, 223);
-$navbarTextColor: white;
+$navbarBackgroundColor: $primary-color;
+$navbarBackgroundColorScrolled: $primary-color;
+$navbarTextColor: black;
+$navbarTextColorHover: #395B64;
 $navbarBlur: 4px;

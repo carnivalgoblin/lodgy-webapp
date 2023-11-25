@@ -2,27 +2,27 @@
 
 .landing-container {
   text-align: center;
-  margin-top: 150px;
+  padding-top: 200px;
   max-height: 100vh;
 }
 
-h1 {
-  font-size: 2em;
-}
-
-p {
-  font-size: 1.2em;
-  color: $fontColor;
-  margin-bottom: 20px;
+.tinted-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the entire container */
+  mix-blend-mode: multiply; /* Blend mode to multiply the background color with the image */
+  z-index: -1; /* Set a lower z-index to place it behind other content */
 }
 
 .buttons {
   margin-top: 20px;
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 1em;
-  margin: 0 10px;
-  cursor: pointer;
+.shadow-text {
+  color: white;
+  text-shadow: 0 0 5px black;
 }
+

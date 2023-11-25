@@ -7,6 +7,12 @@ import { Component } from '@angular/core';
 })
 export class RegisterComponent {
 
+  navbarLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/about', label: 'About' },
+    { path: '/contact', label: 'Contact' },
+  ];
+
   username: string = '';
   password: string = '';
 
