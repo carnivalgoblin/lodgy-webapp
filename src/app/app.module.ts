@@ -18,6 +18,8 @@ import {TripCardComponent} from './components/trip-card/trip-card.component';
 import {ExpenseCardComponent} from './components/expense-card/expense-card.component';
 import {NgOptimizedImage} from "@angular/common";
 import {SummaryCardComponent} from './components/summary-card/summary-card.component';
+import { TripsPageComponent } from './components/trips-page/trips-page.component';
+import { ExpensesPageComponent } from './components/expenses-page/expenses-page.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import {SummaryCardComponent} from './components/summary-card/summary-card.compo
     ProfileComponent,
     TripCardComponent,
     ExpenseCardComponent,
-    SummaryCardComponent
+    SummaryCardComponent,
+    TripsPageComponent,
+    ExpensesPageComponent
   ],
   imports: [
     BrowserModule,

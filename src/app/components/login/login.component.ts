@@ -12,8 +12,8 @@ export class LoginComponent implements OnInit{
 
   navbarLinks = [
     { path: '/', label: 'Home' },
-    { path: '/about', label: 'About' },
-    { path: '/contact', label: 'Contact' },
+    { path: '/trips', label: 'Trips' },
+    { path: '/expenses', label: 'Expenses' },
     { path: '/profile', label: 'Profile'}
   ];
 
