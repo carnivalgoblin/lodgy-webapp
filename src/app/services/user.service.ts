@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {GlobalConstants} from "../global/global-constants";
 import {AuthService} from "./auth.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";

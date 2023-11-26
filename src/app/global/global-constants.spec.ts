@@ -1,4 +1,4 @@
-import { GlobalConstants } from './global-constants';
+import {GlobalConstants} from './global-constants';
 
 describe('GlobalConstants', () => {
   it('should create an instance', () => {

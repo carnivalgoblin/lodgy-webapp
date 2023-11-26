@@ -1,23 +1,23 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LandingComponent } from './components/landing/landing.component';
-import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {LandingComponent} from './components/landing/landing.component';
+import {RegisterComponent} from './components/register/register.component';
+import {LoginComponent} from './components/login/login.component';
 import {FormsModule} from "@angular/forms";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavigationComponent } from './components/navigation/navigation.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NavigationComponent} from './components/navigation/navigation.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
-import { ProfileComponent } from './components/profile/profile.component';
+import {ProfileComponent} from './components/profile/profile.component';
 import {HttpClientModule} from "@angular/common/http";
-import { TripCardComponent } from './components/trip-card/trip-card.component';
-import { ExpenseCardComponent } from './components/expense-card/expense-card.component';
+import {TripCardComponent} from './components/trip-card/trip-card.component';
+import {ExpenseCardComponent} from './components/expense-card/expense-card.component';
 import {NgOptimizedImage} from "@angular/common";
-import { SummaryCardComponent } from './components/summary-card/summary-card.component';
+import {SummaryCardComponent} from './components/summary-card/summary-card.component';
 
 @NgModule({
   declarations: [

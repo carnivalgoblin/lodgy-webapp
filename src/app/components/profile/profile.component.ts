@@ -1,7 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Trip} from "../../models/trip";
 import {Expense} from "../../models/expense";
-import {jwtDecode} from "jwt-decode";
 import {AuthService} from "../../services/auth.service";
 
 @Component({

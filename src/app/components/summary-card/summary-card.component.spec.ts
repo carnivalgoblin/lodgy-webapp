@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SummaryCardComponent } from './summary-card.component';
+import {SummaryCardComponent} from './summary-card.component';
 
 describe('SummaryCardComponent', () => {
   let component: SummaryCardComponent;
@@ -11,7 +11,7 @@ describe('SummaryCardComponent', () => {
       declarations: [SummaryCardComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(SummaryCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
