@@ -7,16 +7,18 @@
   <form (ngSubmit)="login()" #loginForm="ngForm">
     <mat-form-field class="form-group">
       <mat-label for="username">Username:</mat-label>
-      <input matInput type="text" id="username" name="username" [(ngModel)]="username" required>
+      <input matInput type="text" id="username" name="username" [autocomplete]="'username'" [(ngModel)]="username" required>
     </mat-form-field>
     <br>
     <mat-form-field class="form-group">
       <mat-label for="password">Password:</mat-label>
-      <input matInput type="password" id="password" name="password" [(ngModel)]="password" required>
+      <input matInput type="password" id="password" name="password" [autocomplete]="'current-password'" [(ngModel)]="password" required>
     </mat-form-field>
     <br>
     <button mat-raised-button type="submit">Login</button>
   </form>
   <br>
   <a routerLink="/register">No account? Register here!</a>
+
+<!--  <img src="assets/icons/credit-card-regular.svg">-->
 </div>

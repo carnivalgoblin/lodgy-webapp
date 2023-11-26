@@ -11,6 +11,7 @@ export class RegisterComponent {
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About' },
     { path: '/contact', label: 'Contact' },
+    { path: '/profile', label: 'Profile'}
   ];
 
   username: string = '';

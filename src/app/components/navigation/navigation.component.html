@@ -2,13 +2,10 @@
 
   <ul>
     <li *ngFor="let link of links">
-      <a class="nav-link" [routerLink]="link.path">{{ link.label }}</a>
+      <a class="nav-link" [routerLink]="link.path" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: link.path === '/' }">
+        <span class="label">{{ link.label }}</span>
+      </a>
     </li>
   </ul>
 
-<!--  <ul>-->
-<!--    <li><a class="nav-link" routerLink="/">Home</a></li>-->
-<!--    <li><a class="nav-link" routerLink="/about">About</a></li>-->
-<!--    <li><a class="nav-link" routerLink="/contact">Contact</a></li>-->
-<!--  </ul>-->
 </div>

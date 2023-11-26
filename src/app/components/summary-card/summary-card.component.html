@@ -1,0 +1,35 @@
+<ng-container [ngTemplateOutlet]="isTrips ? trips : isExpenses ? expenses : default"></ng-container>
+
+<ng-template #trips>
+  <div class="card">
+    <div class="card-content">
+  <!--    {{ summary.type }}-->
+      {{ summary.total }} trips
+      <br>
+      {{ summary.amount }} days on trips
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #expenses>
+  <div class="card">
+    <div class="card-content">
+  <!--    {{ summary.type }}-->
+      {{ summary.total }} expenses
+      <br>
+      {{ summary.amount }} spent
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #default>
+  <div class="card">
+    <div class="card-content">
+      {{ summary.type }}
+      <br>
+      {{ summary.total }}
+      <br>
+      {{ summary.amount }}
+    </div>
+  </div>
+</ng-template>

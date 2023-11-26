@@ -25,7 +25,7 @@
     box-shadow: 0 0 15px rgba(black, 0.1);
   }
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: $breakpoint-md) {
     position: fixed;
     bottom: 0;
     top: auto;
@@ -43,23 +43,49 @@
 .nav-link {
   color: $navbarTextColor;
   font-size: 1.2em;
-  transition: color .3s;
+  transition: color .3s, text-shadow .5s;
   margin: auto;
+  text-shadow: black 0px 0px 0px;
 
   &:hover {
     color: $navbarTextColorHover;
+    text-shadow: black 0px 0px 10px;
+  }
+
+  &.active {
+    color: $navbarTextColorHover;
+    text-shadow: black 0px 0px 10px;
+  }
+}
+
+
+
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  transition: fill 0.3s ease;
+
+  &:hover {
+    fill: #007bff;
   }
 }
 
 ul {
+  display: flex;
   list-style-type: none;
-  margin: 5px;
+  margin: 0;
   padding: 0;
-}
+  justify-content: center;
 
-li {
-  display: inline;
-  padding: 5px 10px;
+  li {
+    display: inline;
+    padding: 5px 20px;
+
+    @media only screen and (max-width: $breakpoint-md) {
+      padding: 5px 10px;
+    }
+  }
 }
 
 a {

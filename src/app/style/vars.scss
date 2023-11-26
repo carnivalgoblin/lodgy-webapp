@@ -19,8 +19,21 @@ $linkColor: #395B64;
 
 // NAVBAR
 
-$navbarBackgroundColor: $primary-color;
-$navbarBackgroundColorScrolled: $primary-color;
+$navbarBackgroundColor: $tertiary-color;
+$navbarBackgroundColorScrolled: $tertiary-color;
 $navbarTextColor: black;
-$navbarTextColorHover: #395B64;
+$navbarTextColorHover: $primary-color;
 $navbarBlur: 4px;
+
+// BOX
+
+$borderRadius: 25px;
+$boxShadow: 2px 2px 5px rgba(black, 0.2);
+
+
+// BREAKPOINTS
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;

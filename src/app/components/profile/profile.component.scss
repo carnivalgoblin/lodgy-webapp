@@ -1,3 +1,19 @@
+@import "vars";
+
 .profile-container {
   text-align: left;
 }
+
+.summary-grid {
+  max-width: 600px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0px;
+
+  @media only screen and (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr;
+    grid-gap: 0px;
+  }
+}
+
+

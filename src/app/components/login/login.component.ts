@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   navbarLinks = [
     { path: '/', label: 'Home' },
@@ -21,17 +22,22 @@ export class LoginComponent {
 
   constructor(private router: Router, private authService: AuthService) {};
 
+  ngOnInit() {
+  }
+
   login() {
     this.authService.login(this.username, this.password)
       .subscribe(
         (response) => {
-
-          const token = response.token;
-          this.authService.setAuthToken(token);
+          const username = response.username;
           console.log('Login successful!');
+
+          localStorage.setItem('loggedUsername', username);
 
           if (this.authService.isAuthenticated()) {
             this.router.navigate(['/profile']);
+          } else {
+            console.error('Authentication failed. Unable to retrieve token.');
           }
         },
         (error) => {
@@ -39,5 +45,4 @@ export class LoginComponent {
         }
       );
   }
-
 }

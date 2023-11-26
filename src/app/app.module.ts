@@ -17,6 +17,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { TripCardComponent } from './components/trip-card/trip-card.component';
 import { ExpenseCardComponent } from './components/expense-card/expense-card.component';
 import {NgOptimizedImage} from "@angular/common";
+import { SummaryCardComponent } from './components/summary-card/summary-card.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {NgOptimizedImage} from "@angular/common";
     NavigationComponent,
     ProfileComponent,
     TripCardComponent,
-    ExpenseCardComponent
+    ExpenseCardComponent,
+    SummaryCardComponent
   ],
   imports: [
     BrowserModule,

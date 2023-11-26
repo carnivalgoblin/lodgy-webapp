@@ -34,6 +34,21 @@ export class NavigationComponent {
     this.isScrolled = window.scrollY > 0;
   }
 
+  getIconPath(path: string): string {
+    switch (path) {
+      case '/':
+        return 'assets/icons/house-solid.svg';
+      case '/about':
+        return 'assets/icons/credit-card-regular.svg';
+      case '/contact':
+        return 'assets/icons/user-regular.svg';
+      case '/profile':
+        return 'assets/icons/house-user-solid.svg';
+      default:
+        return '';
+    }
+  }
+
   // @HostListener('window:resize', [])
   // onWindowResize() {
   //   this.isMobile = window.innerWidth <= 768; // Adjust the breakpoint as needed

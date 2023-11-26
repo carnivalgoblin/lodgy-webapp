@@ -4,14 +4,16 @@
   text-align: center;
   padding-top: 200px;
   max-height: 100vh;
+  overflow: hidden;
 }
 
 .tinted-image {
   position: absolute;
+  overflow: hidden;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   object-fit: cover; /* Ensure the image covers the entire container */
   mix-blend-mode: multiply; /* Blend mode to multiply the background color with the image */
   z-index: -1; /* Set a lower z-index to place it behind other content */
