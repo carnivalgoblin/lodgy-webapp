@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {GlobalConstants} from "../../global/global-constants";
 
 @Component({
   selector: 'app-register',
@@ -7,12 +8,7 @@ import {Component} from '@angular/core';
 })
 export class RegisterComponent {
 
-  navbarLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/trips', label: 'Trips' },
-    { path: '/expenses', label: 'Expenses' },
-    { path: '/profile', label: 'Profile'}
-  ];
+  navbarLinks = GlobalConstants.navbarLinks;
 
   username: string = '';
   password: string = '';

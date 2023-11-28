@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
+import {GlobalConstants} from "../../global/global-constants";
 
 
 @Component({
@@ -10,12 +11,7 @@ import {AuthService} from "../../services/auth.service";
 })
 export class LoginComponent implements OnInit{
 
-  navbarLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/trips', label: 'Trips' },
-    { path: '/expenses', label: 'Expenses' },
-    { path: '/profile', label: 'Profile'}
-  ];
+  navbarLinks = GlobalConstants.navbarLinks;
 
   username: string = '';
   password: string = '';

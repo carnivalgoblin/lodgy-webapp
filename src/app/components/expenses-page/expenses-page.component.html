@@ -1,3 +1,11 @@
 <app-navigation [links]="navbarLinks"></app-navigation>
 
-<p>expenses-page works!</p>
+<div class="container expense-container">
+  <h2 class="text-center text">All your expenses</h2>
+  <div class="carousel">
+    <expense-card *ngFor="let expense of expenses" [expense]="expense" [ngClass]="'carousel-cell'"></expense-card>
+  </div>
+  <button mat-raised-button routerLink="/" style="margin: 0 auto;" >Landing</button>
+</div>
+
+

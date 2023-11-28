@@ -1,3 +1,9 @@
 <app-navigation [links]="navbarLinks"></app-navigation>
 
-<p>trips-page works!</p>
+
+<div class="trips-container container">
+  <h2 class="text-center text">All your trips</h2>
+  <div class="carousel">
+    <trip-card *ngFor="let trip of trips" [trip]="trip" [ngClass]="'carousel-cell'"></trip-card>
+  </div>
+</div>

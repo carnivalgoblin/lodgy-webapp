@@ -21,6 +21,7 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
+    // return document.cookie.includes('lodgy_token');
     return true;
   }
 }

@@ -61,6 +61,10 @@ a {
   font-family: 'Noto Sans Mono', monospace !important;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .container {
   padding: 75px 0;
   margin: 0 auto;
@@ -81,3 +85,4 @@ a {
 .icon-button:hover {
   filter: brightness(85%);
 }
+

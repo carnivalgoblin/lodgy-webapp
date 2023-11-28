@@ -20,6 +20,7 @@ import {NgOptimizedImage} from "@angular/common";
 import {SummaryCardComponent} from './components/summary-card/summary-card.component';
 import { TripsPageComponent } from './components/trips-page/trips-page.component';
 import { ExpensesPageComponent } from './components/expenses-page/expenses-page.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ExpensesPageComponent } from './components/expenses-page/expenses-page.
     ExpenseCardComponent,
     SummaryCardComponent,
     TripsPageComponent,
-    ExpensesPageComponent
+    ExpensesPageComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,7 @@ import { ExpensesPageComponent } from './components/expenses-page/expenses-page.
     MatInputModule,
     MatButtonModule,
     HttpClientModule,
-    NgOptimizedImage
+    NgOptimizedImage,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Trip} from "../../models/trip";
 import {Expense} from "../../models/expense";
 import {AuthService} from "../../services/auth.service";
+import {GlobalConstants} from "../../global/global-constants";
 
 @Component({
   selector: 'app-profile',
@@ -10,12 +11,7 @@ import {AuthService} from "../../services/auth.service";
 })
 export class ProfileComponent implements OnInit{
 
-  navbarLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/trips', label: 'Trips' },
-    { path: '/expenses', label: 'Expenses' },
-    { path: '/profile', label: 'Profile'}
-  ];
+  navbarLinks = GlobalConstants.navbarLinks;
 
   // @Input() trips: { path: string; label: string; }[] = [];
   // @Input() expenses: { path: string; label: string; }[] = [];
@@ -57,6 +53,20 @@ export class ProfileComponent implements OnInit{
     } else {
       console.error('JWT token not found in localStorage');
     }
+  }
+
+  get sortedAndSlicedTrips() {
+    const sortedTrips = this.trips.sort((a, b) => b.id - a.id);
+
+    return sortedTrips.slice(0, 2);
+
+  }
+
+  get sortedAndSlicedExpenses() {
+    const sortedExpenses = this.expenses.sort((a, b) => b.id - a.id);
+
+    return sortedExpenses.slice(0, 2);
+
   }
 
 

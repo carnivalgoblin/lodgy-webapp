@@ -1,0 +1,10 @@
+@import "vars";
+
+.trips-container {
+  text-align: left;
+  margin-top: 50px;
+
+  @media only screen and (max-width: $breakpoint-md) {
+    margin-top: 0;
+  }
+}
