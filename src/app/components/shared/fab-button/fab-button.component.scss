@@ -1,0 +1,42 @@
+@import "vars";
+
+:host {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  border-radius: 0 !important;
+
+  @media only screen and (max-width: $breakpoint-md) {
+    bottom: 90px;
+  }
+}
+
+.small-fab-container {
+  position: absolute;
+  top: -190px; /* Adjust the value based on your design */
+  right: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.small-fab {
+  margin-top: 18px;
+}
+
+.show-small-fabs .small-fab {
+  display: block;
+}
+
+.small-fab-enter {
+  opacity: 0;
+}
+
+.small-fab-leave {
+  opacity: 1;
+}
+
+.small-fab-enter-active,
+.small-fab-leave-active {
+  transition: opacity 200ms;
+}

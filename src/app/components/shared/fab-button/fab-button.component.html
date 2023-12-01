@@ -1,0 +1,10 @@
+<button mat-fab (click)="handleClick()">
+  <mat-icon>add</mat-icon>
+</button>
+
+<div class="small-fab-container" [@.disabled]="!showSmallFabs" [@smallFabAnimation] *ngIf="showSmallFabs">
+  <!-- Include your smaller FAB components here -->
+  <add-beer-fab class="small-fab"></add-beer-fab>
+  <add-trip-fab class="small-fab"></add-trip-fab>
+  <add-expense-fab class="small-fab"></add-expense-fab>
+</div>

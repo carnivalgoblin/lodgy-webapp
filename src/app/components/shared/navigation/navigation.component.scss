@@ -1,4 +1,4 @@
-@import "vars";
+@import "../../../style/vars";
 
 .navbar {
   position: fixed;
@@ -33,7 +33,7 @@
     background-color: $navbarBackgroundColor;
 
     &.scrolled {
-      width: calc(100% - 50px) !important;
+      width: calc(100% - 28px) !important;
       bottom: 10px;
       top: auto;
     }

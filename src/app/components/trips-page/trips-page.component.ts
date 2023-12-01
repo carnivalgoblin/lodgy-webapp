@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Trip} from "../../models/trip";
+import {GlobalConstants} from "../../global/global-constants";
 
 @Component({
   selector: 'trips-page',
@@ -18,11 +19,6 @@ export class TripsPageComponent {
     // Add more trips as needed
   ];
 
-  navbarLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/trips', label: 'Trips' },
-    { path: '/expenses', label: 'Expenses' },
-    { path: '/profile', label: 'Profile'}
-  ];
+  navbarLinks = GlobalConstants.navbarLinks;
 
 }

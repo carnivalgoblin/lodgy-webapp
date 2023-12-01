@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Trip} from "../../models/trip";
-import {GlobalConstants} from "../../global/global-constants";
+import {Trip} from "../../../models/trip";
+import {GlobalConstants} from "../../../global/global-constants";
 
 @Component({
   selector: 'trip-card',
