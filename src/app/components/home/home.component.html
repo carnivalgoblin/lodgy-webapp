@@ -2,13 +2,13 @@
 
 <div class="container home-container">
 
-  <div class="container upcoming-current-trips-container">
-    <h2 class="text text-center text-bold">Current Trips</h2>
+  <div class="upcoming-current-trips-container">
+    <h2 class="text text-center">Current Trips</h2>
     <trip-card *ngFor="let trip of currentTrips" [trip]="trip"></trip-card>
   </div>
 
-  <div class="container upcoming-current-trips-container">
-    <h2 class="text text-center text-bold">Upcoming Trips</h2>
+  <div class="upcoming-current-trips-container">
+    <h2 class="text text-center">Upcoming Trips</h2>
     <trip-card *ngFor="let trip of upcomingTrips" [trip]="trip"></trip-card>
   </div>
 
