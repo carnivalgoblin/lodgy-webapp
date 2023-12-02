@@ -21,19 +21,9 @@ export class ProfileComponent implements OnInit{
     { type: 'expenses', total: 7, amount: 100.5},
   ];
 
-  trips: Trip[] = [
-    { id: 1, destination: 'Trip 1', description: 'Description for Trip 1', endDate: new Date(), startDate: new Date() },
-    { id: 2, destination: 'Trip 2', description: 'Description for Trip 2', endDate: new Date(), startDate: new Date() },
-    { id: 3, destination: 'Trip 3', description: 'Description for Trip 3', endDate: new Date(), startDate: new Date() },
-    // Add more trips as needed
-  ];
+  trips: Trip[] = GlobalConstants.mockTrips;
 
-  expenses: Expense[] = [
-    { id: 1, tripId: 1, userId: 1, description: 'Description for Expense 1', amount: 100 },
-    { id: 2, tripId: 1, userId: 1, description: 'Description for Expense 2', amount: 200 },
-    { id: 3, tripId: 1, userId: 1, description: 'Description for Expense 3', amount: 300 },
-    // Add more expenses as needed
-  ];
+  expenses: Expense[] = GlobalConstants.mockExpenses;
 
   username: string = 'User';
 

@@ -1,11 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {GlobalConstants} from "../../../global/global-constants";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {TripService} from "../../../services/trip.service";
 import {Trip} from "../../../models/trip";
 import {ExpenseService} from "../../../services/expense.service";
 import {SnackbarService} from "../../../services/snackbar.service";
 import {ModalService} from "../../../services/modal.service";
+import {AddExpenseModalComponent} from "../../modals/add-expense-modal/add-expense-modal.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'trip-detail',
@@ -16,6 +18,8 @@ export class TripDetailComponent implements OnInit {
 
   navbarLinks = GlobalConstants.navbarLinks;
   trip: any;
+  // trips: any[] = [];
+  trips: any[] = GlobalConstants.mockTrips;
   totalExpenses: number = 0;
   isParticipating: boolean = false;
 
@@ -23,21 +27,37 @@ export class TripDetailComponent implements OnInit {
   startDate!: string;
   endDate!: string;
 
+  isAdmin: boolean = false;
+  isMod: boolean = false;
+  isPreselected: boolean = true;
+
   tripUserIds: number[] = [];
   tripExpenseIds: number[] = [];
 
+  tripId!: number;
+
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private tripService: TripService,
     private expenseService: ExpenseService,
     private snackbarService: SnackbarService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    public dialog: MatDialog
     ) {
   }
 
   ngOnInit() {
+    if (localStorage.getItem('isAdmin') === 'true') {
+      this.isAdmin = true;
+    } else if (localStorage.getItem('isMod') === 'true') {
+      this.isMod = true;
+    }
+
     this.route.params.subscribe(params => {
       const tripId = +params['id'];
+      this.tripId = tripId;
+      console.log('Trip ID:', tripId);
 
       // Call the getTrip method from the TripService
       this.tripService.getTrip(tripId).subscribe(
@@ -65,6 +85,7 @@ export class TripDetailComponent implements OnInit {
         }
       );
     });
+
   }
 
   private convertToDate(dateString: string): Date | null {
@@ -99,11 +120,14 @@ export class TripDetailComponent implements OnInit {
     }
 
   distributeExpenses() {
-    this.snackbarService.openSnackbar('Not implemented yet');
+    const tripId = this.tripId;
+    this.router.navigate([`/trip/${tripId}/distribute`]);
   }
 
   addExpenses() {
-    this.modalService.openAddExpenseModal();
+    this.modalService.openAddExpenseModal(this.trips, this.isAdmin, this.isMod, this.isPreselected);
+    //admin, mod, preselected
+    this.snackbarService.openSnackbar('Not implemented yet');
   }
 
   participate() {

@@ -1,24 +1,26 @@
 <app-navigation [links]="navbarLinks"></app-navigation>
 
 <div class="container profile-container">
-  <h2 class="text">Welcome, </h2> <span class="user-name">{{username}}</span>
+  <h2 class="text text-bold">Welcome, </h2> <span class="user-name">{{username}}</span>
   <br><br>
   <p class="text">This is your profile. You can see your two latest trips and expenses as well as a summary here. <br>
   Click on a trip or expense to see more info or navigate to complete lists through the navigation bar.</p>
 
-  <h3 class="text">Your summary</h3>
+  <h3 class="text text-bold">Your summary</h3>
   <div class="summary-grid">
     <summary-card *ngFor="let summary of summaries" [summary]="summary" [ngClass]="'grid-card'"></summary-card>
   </div>
 
-  <h3 class="text">Trips</h3>
+  <h3 class="text text-bold">Trips</h3>
   <div class="carousel">
     <trip-card *ngFor="let trip of sortedAndSlicedTrips" [trip]="trip" [ngClass]="'carousel-cell'"></trip-card>
   </div>
 
-  <h3 class="text">Expenses</h3>
+  <h3 class="text text-bold">Expenses</h3>
   <div class="carousel">
     <expense-card *ngFor="let expense of sortedAndSlicedExpenses" [expense]="expense" [ngClass]="'carousel-cell'"></expense-card>
   </div>
 
 </div>
+
+<fab-button></fab-button>

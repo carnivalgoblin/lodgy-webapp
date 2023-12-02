@@ -1,7 +1,17 @@
 <app-navigation [links]="navbarLinks"></app-navigation>
 
-<div class="container">
-  <p>Placeholder for home. Display latest trips in v1. Show if there is an active trip or an upcoming one.</p>
+<div class="container home-container">
+
+  <div class="container upcoming-current-trips-container">
+    <h2 class="text text-center text-bold">Current Trips</h2>
+    <trip-card *ngFor="let trip of currentTrips" [trip]="trip"></trip-card>
+  </div>
+
+  <div class="container upcoming-current-trips-container">
+    <h2 class="text text-center text-bold">Upcoming Trips</h2>
+    <trip-card *ngFor="let trip of upcomingTrips" [trip]="trip"></trip-card>
+  </div>
+
 </div>
 
 <fab-button></fab-button>

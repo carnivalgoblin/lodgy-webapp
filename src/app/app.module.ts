@@ -18,8 +18,8 @@ import {TripCardComponent} from './components/cards/trip-card/trip-card.componen
 import {ExpenseCardComponent} from './components/cards/expense-card/expense-card.component';
 import {NgOptimizedImage} from "@angular/common";
 import {SummaryCardComponent} from './components/cards/summary-card/summary-card.component';
-import { TripsPageComponent } from './components/trips-page/trips-page.component';
-import { ExpensesPageComponent } from './components/expenses-page/expenses-page.component';
+import { TripsPageComponent } from './components/pages/trips-page/trips-page.component';
+import { ExpensesPageComponent } from './components/pages/expenses-page/expenses-page.component';
 import { HomeComponent } from './components/home/home.component';
 import { FabButtonComponent } from './components/shared/fab-button/fab-button.component';
 import {MatIconModule} from "@angular/material/icon";
@@ -35,6 +35,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatNativeDateModule} from "@angular/material/core";
 import { UpdateExpenseModalComponent } from './components/modals/update-expense-modal/update-expense-modal.component';
+import {MatSelectModule} from "@angular/material/select";
+import { DistributionPageComponent } from './components/pages/distribution-page/distribution-page.component';
 
 
 @NgModule({
@@ -59,7 +61,8 @@ import { UpdateExpenseModalComponent } from './components/modals/update-expense-
     ExpenseDetailComponent,
     AddTripModalComponent,
     AddExpenseModalComponent,
-    UpdateExpenseModalComponent
+    UpdateExpenseModalComponent,
+    DistributionPageComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,8 @@ import { UpdateExpenseModalComponent } from './components/modals/update-expense-
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

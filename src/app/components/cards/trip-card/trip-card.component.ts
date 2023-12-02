@@ -13,13 +13,26 @@ export class TripCardComponent implements OnInit{
   @Input() trip!: Trip;
 
   dateOptions: any = GlobalConstants.dateOptions;
+
   formattedStartDate!: string;
   formattedEndDate!: string;
 
   ngOnInit() {
+
     if (this.trip && this.trip.startDate && this.trip.endDate) {
-      this.formattedStartDate = this.trip.startDate.toLocaleDateString('de-DE', this.dateOptions);
-      this.formattedEndDate = this.trip.endDate.toLocaleDateString('de-DE', this.dateOptions);
+      // Check if the startDate includes the letter 'T'
+      const startDateString = this.trip.startDate.toString();
+      const isFullDateFormat = startDateString.includes('T');
+
+      // Convert dates accordingly
+      this.formattedStartDate = isFullDateFormat
+        ? new Date(startDateString).toLocaleDateString('de-DE', this.dateOptions)
+        : startDateString;
+
+      const endDateString = this.trip.endDate.toString();
+      this.formattedEndDate = isFullDateFormat
+        ? new Date(endDateString).toLocaleDateString('de-DE', this.dateOptions)
+        : endDateString;
     }
   }
 

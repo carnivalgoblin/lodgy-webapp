@@ -97,6 +97,14 @@ a {
 
 .text {
   font-family: 'Noto Sans Mono', monospace !important;
+
+  &.text-bold {
+    font-weight: bold;
+  }
+
+  &.text-large {
+    font-size: 1.5em;
+  }
 }
 
 .text-center {
@@ -106,7 +114,7 @@ a {
 .container {
   padding: 75px 0;
   margin: 0 auto;
-  max-width: 60%;
+  max-width: 600px;
 
   text-align: center;
   line-height: 2rem;

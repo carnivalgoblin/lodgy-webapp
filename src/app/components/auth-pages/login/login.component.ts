@@ -26,14 +26,22 @@ export class LoginComponent implements OnInit{
       .subscribe(
         (response) => {
           const username = response.username;
+          const userId = response.id;
           console.log('Login successful!');
 
           localStorage.setItem('loggedUsername', username);
+          localStorage.setItem('loggedUserId', userId);
 
           if (response.roles.includes('ROLE_ADMIN')) {
             localStorage.setItem('isAdmin', 'true');
           } else {
             localStorage.setItem('isAdmin', 'false');
+          }
+
+          if (response.roles.includes('ROLE_MODERATOR')) {
+            localStorage.setItem('isMod', 'true');
+          } else {
+            localStorage.setItem('isMod', 'false');
           }
 
           if (this.authService.isAuthenticated()) {

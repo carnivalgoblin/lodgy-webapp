@@ -10,24 +10,40 @@ import {UpdateExpenseModalComponent} from "../components/modals/update-expense-m
 export class ModalService {
   constructor(public dialog: MatDialog) {}
 
-  openAddExpenseModal(): void {
-    this.dialog.open(AddExpenseModalComponent, {
-      width: '400px', // Adjust the width as needed
-      height: '500px'
+  openAddExpenseModal(trips: any[], isAdmin: boolean, isMod: boolean, isPreselected: boolean): void {
+    const classes: string[] = ['expense-add-modal-panel'];
+
+    if (isAdmin) {
+      classes.push('admin');
+    }
+
+    else if (isMod) {
+      classes.push('mod');
+    }
+
+    else if (isPreselected) {
+      classes.push('preselected');
+    }
+
+    else {
+      classes.push('default');
+    }
+
+    const dialogRef = this.dialog.open(AddExpenseModalComponent, {
+      panelClass: classes.join('-'), // Combine the classes into a space-separated string
+      data: { trips: trips, isPreselected: isPreselected }
     });
   }
 
   openAddTripModal(): void {
     this.dialog.open(AddTripModalComponent, {
-      width: '400px', // Adjust the width as needed
-      height: '500px'
+      panelClass: 'trip-add-modal-panel',
     });
   }
 
   openUpdateExpenseModal(): void {
     this.dialog.open(UpdateExpenseModalComponent, {
-      width: '400px', // Adjust the width as needed
-      height: '300px'
+      panelClass: 'expense-update-modal-panel',
     });
   }
 }

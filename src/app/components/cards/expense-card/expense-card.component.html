@@ -1,8 +1,8 @@
 <div class="expense-card card" (click)="openExpenseDetail(expense.id)">
   <div class="card-content">
-    <p class="text">{{ expense.amount }} €</p>
-    <p class="text">Trip: {{ expense.tripId }}</p>
-    <p class="text">{{ expense.description }}</p>
+    <p><span class="text  text-bold">Amount:</span> <span class="text"> {{ expense.amount }} €</span></p>
+    <p><span class="text  text-bold">Trip:</span> <span class="text"> {{ tripName }}</span></p>
+    <p><span class="text  text-bold">Description:</span> <span class="text"> {{ expense.description }}</span></p>
   </div>
 </div>
 

@@ -6,6 +6,41 @@ $modal-content-margin-top: 25px;
   height: 500px;
 }
 
+.expense-add-modal-panel {
+  height: 475px;
+  width: 400px;
+
+  &-default {
+    height: 400px;
+    width: 400px;
+  }
+
+  &-preselected {
+    height: 300px;
+    width: 400px;
+  }
+
+  &-admin {
+    height: 500px;
+    width: 400px;
+  }
+
+  &-mod {
+    height: 500px;
+    width: 400px;
+  }
+}
+
+.expense-update-modal-panel {
+  height: 300px;
+  width: 400px;
+}
+
+.trip-add-modal-panel {
+  height: 500px;
+  width: 400px;
+}
+
 .modal {
   background-color: $primary-color;
   height: 100%;

@@ -1,26 +1,112 @@
-<div class="modal">
-  <div class="modal-content">
-    <h2>Add Expense</h2>
-    <!-- Add your form fields here -->
-    <mat-form-field>
-      <input matInput type="number" placeholder="Amount" [(ngModel)]="amount">
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <input matInput type="number" placeholder="userID" [(ngModel)]="userId">
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <input matInput type="number" placeholder="tripID" [(ngModel)]="tripId">
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <input matInput type="text" placeholder="Description" [(ngModel)]="description">
-    </mat-form-field>
-    <br>
+<ng-container [ngTemplateOutlet]="isAdmin ? admin : isMod ? mod : isPreselected ? preselected : default"></ng-container>
 
-    <button mat-raised-button class="button" (click)="onAddExpense()">Add Expense</button>
-    <button mat-raised-button class="button warn active" (click)="onClose()">Close</button>
+<ng-template #default>
+  <div class="modal">
+    <div class="modal-content">
+      <h2>Add Expense</h2>
+      <mat-form-field>
+        <input matInput type="number" placeholder="Amount" [(ngModel)]="amount">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Select a Trip:</mat-label>
+        <mat-select [(ngModel)]="selectedTrip" name="trip" required>
+          <mat-option *ngFor="let trip of trips" [value]="trip.id">{{ trip.destination }} - {{ trip.startDate | date: 'yyyy'}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Description" [(ngModel)]="description">
+      </mat-form-field>
+      <br>
 
+      <button mat-raised-button class="button" (click)="onAddExpense()">Add Expense</button>
+      <button mat-raised-button class="button warn active" (click)="onClose()">Close</button>
+
+    </div>
   </div>
-</div>
+</ng-template>
+
+<ng-template #preselected>
+  <div class="modal">
+    <div class="modal-content">
+      <h2>Add Expense</h2>
+      <mat-form-field>
+        <input matInput type="number" placeholder="Amount" [(ngModel)]="amount">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Description" [(ngModel)]="description">
+      </mat-form-field>
+      <br>
+
+      <button mat-raised-button class="button" (click)="onAddExpense()">Add Expense</button>
+      <button mat-raised-button class="button warn active" (click)="onClose()">Close</button>
+
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #admin>
+  <div class="modal">
+    <div class="modal-content">
+      <h2>Add Expense</h2>
+      <!-- Add your form fields here -->
+      <mat-form-field>
+        <input matInput type="number" placeholder="Amount" [(ngModel)]="amount">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="number" placeholder="userID" [(ngModel)]="userId">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Select a Trip:</mat-label>
+        <mat-select [(ngModel)]="selectedTrip" name="trip" required>
+          <mat-option *ngFor="let trip of trips" [value]="trip.id">{{ trip.destination }} - {{ trip.startDate | date: 'yyyy'}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Description" [(ngModel)]="description">
+      </mat-form-field>
+      <br>
+
+      <button mat-raised-button class="button" (click)="onAddExpense()">Add Expense</button>
+      <button mat-raised-button class="button warn active" (click)="onClose()">Close</button>
+
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #mod>
+  <div class="modal">
+    <div class="modal-content">
+      <h2>Add Expense</h2>
+      <!-- Add your form fields here -->
+      <mat-form-field>
+        <input matInput type="number" placeholder="Amount" [(ngModel)]="amount">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="number" placeholder="userID" [(ngModel)]="userId">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Select a Trip:</mat-label>
+        <mat-select [(ngModel)]="selectedTrip" name="trip" required>
+          <mat-option *ngFor="let trip of trips" [value]="trip.id">{{ trip.destination }} - {{ trip.startDate | date: 'yyyy'}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Description" [(ngModel)]="description">
+      </mat-form-field>
+      <br>
+
+      <button mat-raised-button class="button" (click)="onAddExpense()">Add Expense</button>
+      <button mat-raised-button class="button warn active" (click)="onClose()">Close</button>
+
+    </div>
+  </div>
+</ng-template>

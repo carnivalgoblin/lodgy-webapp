@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Expense} from "../../../models/expense";
 import {Router} from "@angular/router";
+import {Trip} from "../../../models/trip";
+import {TripService} from "../../../services/trip.service";
+import {GlobalConstants} from "../../../global/global-constants";
 
 @Component({
   selector: 'expense-card',
@@ -10,11 +13,30 @@ import {Router} from "@angular/router";
 export class ExpenseCardComponent implements OnInit{
 
   @Input() expense!: Expense;
+  // tripId = this.expense.tripId;
+  // trip?: Trip;
+  trip: Trip = GlobalConstants.singleTrip
+  tripName?: string;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+              private tripService: TripService
+  ) {
   }
 
   ngOnInit() {
+    this.tripName = this.trip.destination + " " + this.trip.startDate.getUTCFullYear();
+    console.log(this.trip)
+    // this.tripService.getTrip(this.tripId).subscribe(
+    //   (data: Trip) => {
+    //     this.trip = data;
+    //     this.tripName = this.trip.destination + " " + this.trip.startDate.getUTCFullYear();
+    //     console.log('Trip details fetched successfully: ' + this.tripName);
+    //   },
+    //   error => {
+    //     console.error('Error fetching trip details', error);
+    //   }
+    // );
   }
 
   openExpenseDetail(expenseId: number) {
