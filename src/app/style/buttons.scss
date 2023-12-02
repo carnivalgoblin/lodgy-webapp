@@ -1,6 +1,29 @@
+@import "vars";
+
 .button {
   padding: 10px 20px;
   margin: 0 10px;
   border-radius: 25px !important;
   font-family: 'Noto Sans Mono', monospace !important;
+
+  &.warn.active {
+    background-color: $warn-color;
+    color: $warn-text-color !important;
+    opacity: 1;
+  }
+
+  &.warn.deactivated {
+    cursor: auto;
+    background-color: $warn-deactivated-color;
+    filter: brightness($darker);
+    color: $warn-deactivated-text-color !important;
+    opacity: 1;
+  }
+
+  &.deactivated {
+    cursor: auto;
+    background-color: $deactivated-text-color;
+    color: $warn-text-color !important;
+    opacity: 1;
+  }
 }

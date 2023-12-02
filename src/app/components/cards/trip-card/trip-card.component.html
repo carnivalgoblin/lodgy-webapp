@@ -1,7 +1,7 @@
 
-<div class="trip-card card">
+<div class="trip-card card" (click)="openTripDetail(trip.id)">
   <div class="card-content">
-    <h3 class="text">{{ trip.name }}</h3>
+    <h3 class="text">Ziel: <br>{{ trip.destination }}</h3>
     <p class="text">Start: <br>{{ formattedStartDate }}</p>
     <p class="text">End: <br>{{ formattedEndDate }}</p>
     <p class="text">{{ trip.description }}</p>

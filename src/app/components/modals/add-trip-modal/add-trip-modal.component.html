@@ -1,0 +1,32 @@
+<div class="modal">
+  <div class="modal-content">
+    <h2>Add Trip</h2>
+    <!-- Add your form fields here -->
+    <mat-form-field>
+      <mat-label>Destination</mat-label>
+      <input matInput type="text" [(ngModel)]="tripDestination">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Start Date</mat-label>
+      <input matInput [matDatepicker]="startDatePicker" [(ngModel)]="tripStartDate">
+      <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>End Date</mat-label>
+      <input matInput [matDatepicker]="endDatePicker" [(ngModel)]="tripEndDate">
+      <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput type="text" [(ngModel)]="tripDescription">
+    </mat-form-field>
+    <br><br>
+    <button mat-raised-button class="button" (click)="onAddTrip()">Add Trip</button>
+    <button mat-raised-button class="button warn active" (click)="onClose()">Close</button>
+  </div>
+</div>

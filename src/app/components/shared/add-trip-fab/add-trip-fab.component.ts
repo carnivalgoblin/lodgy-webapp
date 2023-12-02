@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {SnackbarService} from "../../../services/snackbar.service";
+import {ModalService} from "../../../services/modal.service";
 
 @Component({
   selector: 'add-trip-fab',
@@ -8,10 +9,13 @@ import {SnackbarService} from "../../../services/snackbar.service";
 })
 export class AddTripFabComponent {
 
-  constructor(private snackbarService: SnackbarService) {}
+  constructor(
+    private snackbarService: SnackbarService,
+    private modalService: ModalService
+  ) {}
 
   handleAddTripClick(): void {
-    // Logic to handle adding a trip
+    this.modalService.openAddTripModal();
     console.log('Add Trip clicked!');
     this.snackbarService.openSnackbar('Add Trip clicked!');
   }

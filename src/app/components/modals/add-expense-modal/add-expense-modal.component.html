@@ -1,0 +1,26 @@
+<div class="modal">
+  <div class="modal-content">
+    <h2>Add Expense</h2>
+    <!-- Add your form fields here -->
+    <mat-form-field>
+      <input matInput type="number" placeholder="Amount" [(ngModel)]="amount">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput type="number" placeholder="userID" [(ngModel)]="userId">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput type="number" placeholder="tripID" [(ngModel)]="tripId">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Description" [(ngModel)]="description">
+    </mat-form-field>
+    <br>
+
+    <button mat-raised-button class="button" (click)="onAddExpense()">Add Expense</button>
+    <button mat-raised-button class="button warn active" (click)="onClose()">Close</button>
+
+  </div>
+</div>

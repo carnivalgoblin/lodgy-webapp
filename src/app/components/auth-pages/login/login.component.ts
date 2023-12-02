@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {AuthService} from "../../services/auth.service";
-import {GlobalConstants} from "../../global/global-constants";
+import {AuthService} from "../../../services/auth.service";
+import {GlobalConstants} from "../../../global/global-constants";
 
 
 @Component({
@@ -29,6 +29,12 @@ export class LoginComponent implements OnInit{
           console.log('Login successful!');
 
           localStorage.setItem('loggedUsername', username);
+
+          if (response.roles.includes('ROLE_ADMIN')) {
+            localStorage.setItem('isAdmin', 'true');
+          } else {
+            localStorage.setItem('isAdmin', 'false');
+          }
 
           if (this.authService.isAuthenticated()) {
             this.router.navigate(['/profile']);

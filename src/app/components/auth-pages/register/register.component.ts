@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {GlobalConstants} from "../../global/global-constants";
+import {GlobalConstants} from "../../../global/global-constants";
 
 @Component({
   selector: 'app-register',

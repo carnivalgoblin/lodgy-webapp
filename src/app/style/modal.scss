@@ -1,0 +1,20 @@
+@import "vars";
+$modal-content-margin-top: 25px;
+
+.mat-mdc-dialog-surface {
+  border-radius: 25px !important; /* Set the background color to transparent */
+  height: 500px;
+}
+
+.modal {
+  background-color: $primary-color;
+  height: 100%;
+}
+
+.modal-content {
+  margin: auto;
+  text-align: center;
+  margin-top: $modal-content-margin-top;
+  max-height: calc(100% - $modal-content-margin-top);
+  width: 90%;
+}

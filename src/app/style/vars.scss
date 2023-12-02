@@ -4,6 +4,11 @@ $secondary-color: #9AD0C2;
 $tertiary-color: #2D9596;
 $quarternary-color: #265073;
 $background-color: $secondary-color;
+$warn-color: #F56D91;
+$warn-deactivated-color: rgba(245, 109, 145, 0.5);
+$warn-text-color: #ffffff;
+$warn-deactivated-text-color: #5f5f5f;
+$deactivated-text-color: #5f5f5f;
 
 // COLOR MODIFIERS (use filter)
 $darker: 85%;

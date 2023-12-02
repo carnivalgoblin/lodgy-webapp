@@ -1,0 +1,17 @@
+<app-navigation [links]="navbarLinks"></app-navigation>
+
+<div class="expense-detail-container container">
+<!--  <h2 class="text-center">{{ expense?.name }}</h2>-->
+
+  <div class="expense-details card">
+<!--    <p class="text">Name: {{ expense?.name }}</p>-->
+    <p class="text">Amount: {{ expense?.amount }}</p>
+    <p class="text">TripID: {{ expense?.tripId }}</p>
+    <p class="text">UserID: {{ expense?.userId }}</p>
+    <p class="text">Description: {{ expense?.description }}</p>
+  </div>
+  <br>
+  <button mat-raised-button class="button" (click)="updateExpense()">Update Expense</button><br><br>
+  <button mat-raised-button class="button warn active" (click)="deleteExpense()">Delete Expense</button><br><br>
+
+</div>

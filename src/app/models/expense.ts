@@ -2,7 +2,7 @@ export interface Expense {
 
   id: number;
   tripId: number;
-  name: string;
+  userId: number;
   description: string;
   amount: number;
 }

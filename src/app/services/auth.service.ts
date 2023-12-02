@@ -8,6 +8,7 @@ import {GlobalConstants} from "../global/global-constants";
 export class AuthService {
 
   apiURL: string = GlobalConstants.apiURL;
+  authURL: string = GlobalConstants.authURL;
 
   constructor(private http: HttpClient) {}
 
@@ -17,7 +18,7 @@ export class AuthService {
       password: password,
     };
 
-    return this.http.post<any>(this.apiURL + '/api/auth/signin', loginPayload);
+    return this.http.post<any>(this.authURL + '/signin', loginPayload, { withCredentials: true });
   }
 
   isAuthenticated(): boolean {
