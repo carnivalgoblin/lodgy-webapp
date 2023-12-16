@@ -2,7 +2,6 @@ import {Component, Inject} from '@angular/core';
 import {SnackbarService} from "../../../services/snackbar.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {AddTripModalComponent} from "../add-trip-modal/add-trip-modal.component";
-import {ModalService} from "../../../services/modal.service";
 
 @Component({
   selector: 'update-expense-modal',

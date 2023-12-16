@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GlobalConstants} from "../../../global/global-constants";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TripService} from "../../../services/trip.service";
@@ -6,8 +6,9 @@ import {Trip} from "../../../models/trip";
 import {ExpenseService} from "../../../services/expense.service";
 import {SnackbarService} from "../../../services/snackbar.service";
 import {ModalService} from "../../../services/modal.service";
-import {AddExpenseModalComponent} from "../../modals/add-expense-modal/add-expense-modal.component";
 import {MatDialog} from "@angular/material/dialog";
+import {forkJoin} from "rxjs";
+import {DataService} from "../../../services/data.service";
 
 @Component({
   selector: 'trip-detail',
@@ -33,6 +34,8 @@ export class TripDetailComponent implements OnInit {
 
   tripUserIds: number[] = [];
   tripExpenseIds: number[] = [];
+  userTripDTOs: any[] = [];
+  basedOnDays: boolean = true;
 
   tripId!: number;
 
@@ -43,6 +46,7 @@ export class TripDetailComponent implements OnInit {
     private expenseService: ExpenseService,
     private snackbarService: SnackbarService,
     private modalService: ModalService,
+    private dataService: DataService,
     public dialog: MatDialog
     ) {
   }
@@ -86,42 +90,44 @@ export class TripDetailComponent implements OnInit {
       );
     });
 
+  this.tripService.getUserTrips(this.tripId).subscribe(
+    (data: any) => {
+      this.userTripDTOs = data;
+      console.log('User trips fetched successfully: ' + data);
+    });
   }
-
-  private convertToDate(dateString: string): Date | null {
-      const date = new Date(dateString);
-
-      // Check if the conversion was successful
-      if (!isNaN(date.getTime())) {
-        return date;
-      } else {
-        console.error('Invalid date format:', dateString);
-        return null;
-      }
-    }
-
-  private convertStartAndEndDate() {
-      if (this.trip) {
-        const startDateString = this.trip.startDate;
-        const endDateString = this.trip.endDate;
-
-        // Convert start date
-        const startDate = this.convertToDate(startDateString);
-        if (startDate !== null) {
-          this.startDate = startDate.toLocaleDateString('de-DE', this.dateOptions);
-        }
-
-        // Convert end date
-        const endDate = this.convertToDate(endDateString);
-        if (endDate !== null) {
-          this.endDate = endDate.toLocaleDateString('de-DE', this.dateOptions);
-        }
-      }
-    }
 
   distributeExpenses() {
     const tripId = this.tripId;
-    this.router.navigate([`/trip/${tripId}/distribute`]);
+
+    // Fetch user trips for the trip and distribute costs after both requests complete
+    forkJoin([
+      this.tripService.getUserTrips(tripId),
+      this.tripService.distributeCosts(tripId, this.userTripDTOs, this.basedOnDays)
+    ]).subscribe(
+      ([userTrips, distributionResult]) => {
+        console.log('User Trips:', userTrips);
+
+        // Construct userTripDTOs using userTrips data
+        this.userTripDTOs = userTrips.map(userTrip => ({
+          id: userTrip.id,
+          userId: userTrip.userId,
+          tripId: userTrip.tripId,
+          owedAmount: userTrip.owedAmount,
+          days: userTrip.days || 0
+        }));
+
+        console.log('Owed amounts:', distributionResult);
+
+        this.dataService.setDistributionResult(distributionResult);
+
+        this.router.navigate([`/trip/${tripId}/distribute`, { tripId: tripId }]);
+
+      },
+      (error) => {
+        console.error('Failed to fetch user trips or distribute costs', error);
+      }
+    );
   }
 
   addExpenses() {
@@ -133,5 +139,37 @@ export class TripDetailComponent implements OnInit {
   participate() {
     this.isParticipating =! this.isParticipating;
     this.snackbarService.openSnackbar('Not implemented yet');
+  }
+
+
+  private convertToDate(dateString: string): Date | null {
+    const date = new Date(dateString);
+
+    // Check if the conversion was successful
+    if (!isNaN(date.getTime())) {
+      return date;
+    } else {
+      console.error('Invalid date format:', dateString);
+      return null;
+    }
+  }
+
+  private convertStartAndEndDate() {
+    if (this.trip) {
+      const startDateString = this.trip.startDate;
+      const endDateString = this.trip.endDate;
+
+      // Convert start date
+      const startDate = this.convertToDate(startDateString);
+      if (startDate !== null) {
+        this.startDate = startDate.toLocaleDateString('de-DE', this.dateOptions);
+      }
+
+      // Convert end date
+      const endDate = this.convertToDate(endDateString);
+      if (endDate !== null) {
+        this.endDate = endDate.toLocaleDateString('de-DE', this.dateOptions);
+      }
+    }
   }
 }

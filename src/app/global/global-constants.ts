@@ -1,5 +1,3 @@
-import {publish} from "rxjs";
-
 export class GlobalConstants {
 
   // Local Testing API
@@ -127,6 +125,30 @@ export class GlobalConstants {
       tripId: 3
     }
   ];
+
+  public static mockUserTrips = [
+    {
+      "id": 1,
+      "userId": 1,
+      "tripId": 1,
+      "days": 5,
+      "owedAmount": 0.0
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "tripId": 1,
+      "days": 5,
+      "owedAmount": 0.0
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "tripId": 1,
+      "days": 5,
+      "owedAmount": 0.0
+    }
+  ]
 
   public static singleTrip = {
     id: 1,

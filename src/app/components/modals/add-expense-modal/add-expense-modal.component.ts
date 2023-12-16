@@ -1,7 +1,6 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {SnackbarService} from "../../../services/snackbar.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {AddTripModalComponent} from "../add-trip-modal/add-trip-modal.component";
 
 @Component({
   selector: 'add-expense-modal',

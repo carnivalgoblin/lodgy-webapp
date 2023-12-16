@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {SnackbarService} from "../../../services/snackbar.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {ModalService} from "../../../services/modal.service";
 import {GlobalConstants} from "../../../global/global-constants";
 

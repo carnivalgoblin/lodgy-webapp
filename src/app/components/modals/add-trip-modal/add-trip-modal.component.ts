@@ -1,10 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {SnackbarService} from "../../../services/snackbar.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {MatNativeDateModule} from "@angular/material/core";
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatInputModule} from "@angular/material/input";
-import {MatFormFieldModule} from "@angular/material/form-field";
 
 @Component({
   selector: 'add-trip-modal',

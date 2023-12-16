@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Trip} from "../../../models/trip";
 import {GlobalConstants} from "../../../global/global-constants";
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {AddExpenseModalComponent} from "../components/modals/add-expense-modal/add-expense-modal.component";
 import {AddTripModalComponent} from "../components/modals/add-trip-modal/add-trip-modal.component";

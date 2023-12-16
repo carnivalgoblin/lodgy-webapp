@@ -1,0 +1,36 @@
+@import "vars";
+
+.container {
+  max-width: fit-content;
+  padding-top: 0;
+}
+
+.a4-container {
+  width: 210mm;
+  height: 297mm;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10mm;
+  box-sizing: border-box;
+  background-color: $primary-color;
+  border: 1px solid #000;
+}
+
+.mat-table {
+  background-color:transparent !important;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: $borderRadius;
+  box-shadow: 0.1em 0.1em 5px $secondary-color;
+}
+
+table tr:last-child td /*To remove the last border*/{
+  border-bottom:0 solid
+}
+
+.mat-mdc-table tbody, .mat-mdc-table tfoot, .mat-mdc-table thead, .mat-mdc-cell, .mat-mdc-footer-cell, .mat-mdc-header-row, .mat-mdc-row, .mat-mdc-footer-row, .mat-mdc-table .mat-mdc-header-cell {
+  border-radius: $borderRadius;
+}

@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Expense} from "../../../models/expense";
 import {GlobalConstants} from "../../../global/global-constants";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'expenses-page',

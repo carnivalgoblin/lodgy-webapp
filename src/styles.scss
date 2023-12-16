@@ -87,6 +87,10 @@ a {
   &.tilted {
     transform: rotate(-5deg);
   }
+
+  &.print {
+    text-shadow: 0.1em 0.1em 2px $secondary-color;
+  }
 }
 
 .user-name {

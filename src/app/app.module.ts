@@ -18,25 +18,26 @@ import {TripCardComponent} from './components/cards/trip-card/trip-card.componen
 import {ExpenseCardComponent} from './components/cards/expense-card/expense-card.component';
 import {NgOptimizedImage} from "@angular/common";
 import {SummaryCardComponent} from './components/cards/summary-card/summary-card.component';
-import { TripsPageComponent } from './components/pages/trips-page/trips-page.component';
-import { ExpensesPageComponent } from './components/pages/expenses-page/expenses-page.component';
-import { HomeComponent } from './components/home/home.component';
-import { FabButtonComponent } from './components/shared/fab-button/fab-button.component';
+import {TripsPageComponent} from './components/pages/trips-page/trips-page.component';
+import {ExpensesPageComponent} from './components/pages/expenses-page/expenses-page.component';
+import {HomeComponent} from './components/home/home.component';
+import {FabButtonComponent} from './components/shared/fab-button/fab-button.component';
 import {MatIconModule} from "@angular/material/icon";
-import { AddTripFabComponent } from './components/shared/add-trip-fab/add-trip-fab.component';
-import { AddExpenseFabComponent } from './components/shared/add-expense-fab/add-expense-fab.component';
-import { AddBeerFabComponent } from './components/shared/add-beer-fab/add-beer-fab.component';
-import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
-import { TripDetailComponent } from './components/detail-pages/trip-detail/trip-detail.component';
-import { ExpenseDetailComponent } from './components/detail-pages/expense-detail/expense-detail.component';
-import { AddTripModalComponent } from './components/modals/add-trip-modal/add-trip-modal.component';
-import { AddExpenseModalComponent } from './components/modals/add-expense-modal/add-expense-modal.component';
+import {AddTripFabComponent} from './components/shared/add-trip-fab/add-trip-fab.component';
+import {AddExpenseFabComponent} from './components/shared/add-expense-fab/add-expense-fab.component';
+import {AddBeerFabComponent} from './components/shared/add-beer-fab/add-beer-fab.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {TripDetailComponent} from './components/detail-pages/trip-detail/trip-detail.component';
+import {ExpenseDetailComponent} from './components/detail-pages/expense-detail/expense-detail.component';
+import {AddTripModalComponent} from './components/modals/add-trip-modal/add-trip-modal.component';
+import {AddExpenseModalComponent} from './components/modals/add-expense-modal/add-expense-modal.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatNativeDateModule} from "@angular/material/core";
-import { UpdateExpenseModalComponent } from './components/modals/update-expense-modal/update-expense-modal.component';
+import {UpdateExpenseModalComponent} from './components/modals/update-expense-modal/update-expense-modal.component';
 import {MatSelectModule} from "@angular/material/select";
-import { DistributionPageComponent } from './components/pages/distribution-page/distribution-page.component';
+import {DistributionPageComponent} from './components/pages/distribution-page/distribution-page.component';
+import {MatTableModule} from "@angular/material/table";
 
 
 @NgModule({
@@ -80,7 +81,9 @@ import { DistributionPageComponent } from './components/pages/distribution-page/
     MatFormFieldModule,
     MatInputModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,28 +2,31 @@ import {Injectable} from '@angular/core';
 import {GlobalConstants} from "../global/global-constants";
 import {AuthService} from "./auth.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {catchError, map, Observable, of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  apiURL: string = GlobalConstants.apiURL;
+  userURL: string = GlobalConstants.userURL;
 
   constructor(private http: HttpClient, private authService: AuthService) {
   }
 
   getUser(id: number) {
-    const t = localStorage.getItem('authToken') as string;
-    const url = `${this.apiURL}/users/${id}`;
-    const headers = this.createHeaders(t);
-    return this.http.get(url, {headers});
+    const url = `${this.userURL}/${id}`;
+    return this.http.get(url, { withCredentials: true });
   }
 
-  private createHeaders(token: string) {
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
+  getUsername(userId: number): Observable<string> {
+    // Assuming your API returns an object with a 'username' property
+    return this.getUser(userId).pipe(
+      map((user: any) => user.username),
+      catchError(error => {
+        console.error('Error fetching username', error);
+        return of(''); // Provide a default value or handle the error as needed
+      })
+    );
   }
 }
