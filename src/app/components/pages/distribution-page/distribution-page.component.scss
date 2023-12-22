@@ -16,6 +16,11 @@
   border: 1px solid #000;
 }
 
+.distribution-table-print {
+  background-color: $primary-color !important;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
 .mat-table {
   background-color:transparent !important;
 }
@@ -24,7 +29,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   border-radius: $borderRadius;
-  box-shadow: 0.1em 0.1em 5px $secondary-color;
+  box-shadow: 2px 2px 5px $secondary-color;
 }
 
 table tr:last-child td /*To remove the last border*/{

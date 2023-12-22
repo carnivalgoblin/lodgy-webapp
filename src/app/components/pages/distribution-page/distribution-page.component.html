@@ -1,22 +1,13 @@
 <div class="container">
-  <div class="a4-container">
-    <br>
-    <h1 class="app-title tilted print shadow-text">Peakorino</h1>
-    <br>
-    <p class="text text-bold">
-      Distribution of Expenses
-    </p>
-    <p class="text">
-      <span class="text text-bold">Trip: </span> {{ trip.destination }} - {{ trip.startDate | date: 'yyyy'}}
-    </p>
-    <br>
+
+  <div class="container">
     <div *ngIf="distributionResult">
       <!-- Display distributionResult as a table -->
-      <table mat-table [dataSource]="distributionResult" class="mat-elevation-z8 distribution-table">
+      <table mat-table [dataSource]="distributionResult" class="mat-elevation-z8 distribution-table-print">
         <!-- Define the columns -->
         <ng-container matColumnDef="userId">
           <th mat-header-cell *matHeaderCellDef>Username</th>
-          <td mat-cell *matCellDef="let element">{{ getUsername(element.userId).toLowerCase().charAt(0).toUpperCase() + getUsername(element.userId).slice(1) }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.username.charAt(0).toUpperCase() +  element.username.slice(1).toLowerCase() }}</td>
         </ng-container>
         <ng-container matColumnDef="amountPaid">
           <th mat-header-cell *matHeaderCellDef>Paid</th>
@@ -28,7 +19,7 @@
         </ng-container>
         <ng-container matColumnDef="tripId">
           <th mat-header-cell *matHeaderCellDef>Difference</th>
-          <td mat-cell *matCellDef="let element">{{ element.owedAmount - totalExpenseForUserCall(element.userId) }} €</td>
+          <td mat-cell *matCellDef="let element">{{ totalExpenseForUserCall(element.userId) - element.owedAmount }} €</td>
         </ng-container>
         <ng-container matColumnDef="days">
           <th mat-header-cell *matHeaderCellDef>Days</th>
@@ -43,6 +34,55 @@
       <p>Loading...</p>
     </div>
   </div>
-  <br>
-  <button mat-raised-button class="button">Print</button>
+
+  <button mat-raised-button class="button" (click)="togglePDF()" *ngIf="!showPDF">Show PDF</button>
+  <button mat-raised-button class="button" (click)="togglePDF()" *ngIf="showPDF">Hide PDF</button>
+
+  <br><br>
+
+  <div *ngIf="showPDF">
+    <div class="a4-container">
+      <br>
+      <h1 class="app-title tilted print shadow-text">Peakorino</h1>
+      <br>
+      <p class="text text-bold">
+        Distribution of Expenses
+      </p>
+      <p class="text">
+        <span class="text text-bold">Trip: </span> {{ trip.destination }} - {{ trip.startDate | date: 'yyyy'}}
+      </p>
+      <br>
+      <div *ngIf="distributionResult">
+        <table mat-table [dataSource]="distributionResult" class="mat-elevation-z8 distribution-table">
+          <ng-container matColumnDef="userId">
+            <th mat-header-cell *matHeaderCellDef>Username</th>
+            <td mat-cell *matCellDef="let element">{{ element.username.charAt(0).toUpperCase() +  element.username.slice(1).toLowerCase() }}</td>
+          </ng-container>
+          <ng-container matColumnDef="amountPaid">
+            <th mat-header-cell *matHeaderCellDef>Paid</th>
+            <td mat-cell *matCellDef="let element">{{ totalExpenseForUserCall(element.userId) }} €</td>
+          </ng-container>
+          <ng-container matColumnDef="amountOwed">
+            <th mat-header-cell *matHeaderCellDef>Owed</th>
+            <td mat-cell *matCellDef="let element">{{ element.owedAmount }} €</td>
+          </ng-container>
+          <ng-container matColumnDef="tripId">
+            <th mat-header-cell *matHeaderCellDef>Difference</th>
+            <td mat-cell *matCellDef="let element">{{ totalExpenseForUserCall(element.userId) - element.owedAmount }} €</td>
+          </ng-container>
+          <ng-container matColumnDef="days">
+            <th mat-header-cell *matHeaderCellDef>Days</th>
+            <td mat-cell *matCellDef="let element">{{ element.days }}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="['userId', 'amountPaid', 'amountOwed', 'tripId', 'days']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['userId', 'amountPaid', 'amountOwed', 'tripId', 'days']"></tr>
+        </table>
+      </div>
+      <div *ngIf="!distributionResult">
+        <p>Loading...</p>
+      </div>
+    </div>
+    <br>
+    <button mat-raised-button class="button">Save as PDF</button>
+  </div>
 </div>

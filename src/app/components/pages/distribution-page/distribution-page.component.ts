@@ -6,6 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ExpenseService} from "../../../services/expense.service";
 import {Expense} from "../../../models/expense";
 import {UserService} from "../../../services/user.service";
+import {DistributionResultElement} from "../../../models/distribution-result-element";
 
 @Component({
   selector: 'distribution-page',
@@ -13,27 +14,52 @@ import {UserService} from "../../../services/user.service";
   styleUrl: './distribution-page.component.scss'
 })
 export class DistributionPageComponent implements OnInit {
-  distributionResult: any;
+  distributionResult!: DistributionResultElement[];
   tripId!: number;
   trip: any;
-  userExpenses: {
-    username: string;
-    userId: number; totalExpense: number }[] = [];
+  userExpenses: { userId: number; totalExpense: number }[] = [];
+  userNames: { userId: number; userName: string }[] = [];
   totalExpenseForUser!: number;
   userIdToFind!: number;
+  showPDF = false;
 
   constructor(
     private dataService: DataService,
     private tripService: TripService,
     private expenseService: ExpenseService,
-    private userService: UserService,
     private route: ActivatedRoute
-    ) {}
+  ) {}
 
   ngOnInit(): void {
+
     // Retrieve distribution result from the service
     this.distributionResult = this.dataService.getDistributionResult();
     console.log(this.distributionResult);
+
+    // this.userService.getUsernames().subscribe(
+    //   (data: any) => {
+    //     this.userNames = data;
+    //     console.log('User names fetched successfully:', this.userNames);
+    //
+    //     // Log the state of this.distributionResult
+    //     console.log('Distribution Result before enhancement:', this.distributionResult);
+    //
+    //     // Ensure this.distributionResult is an array before using forEach
+    //     if (this.distributionResult && Array.isArray(this.distributionResult)) {
+    //       this.distributionResult.forEach((element: DistributionResultElement) => {
+    //         element.username = this.getUsername(element.userId);
+    //       });
+    //     } else {
+    //       console.error('Distribution Result is not an array or is undefined.');
+    //     }
+    //
+    //     console.log('Distribution Result after enhancement:', this.distributionResult);
+    //   },
+    //   error => {
+    //     console.error('Error fetching user names', error);
+    //   }
+    // );
+
 
     if (this.route.parent) {
       this.route.parent.params.subscribe(parentParams => {
@@ -45,6 +71,14 @@ export class DistributionPageComponent implements OnInit {
         }
       });
     }
+
+    // this.distributionResult.forEach((element: DistributionResultElement) => {
+    //   element.username = this.getUsername(element.userId);
+    // });
+
+    console.log('Distribution result:', this.distributionResult);
+
+    console.log('User expenses:', this.userExpenses);
   }
 
   getTripWithExpenses(tripId: number) {
@@ -71,7 +105,6 @@ export class DistributionPageComponent implements OnInit {
 
                 // Update totalExpenseForUser property
                 this.findTotalExpenseForUser(expense.userId);
-
               },
               error => {
                 console.error('Error fetching expense details', error);
@@ -86,35 +119,17 @@ export class DistributionPageComponent implements OnInit {
     );
   }
 
-  updateUserExpenses(userId: number, expenseAmount: number): void {
+  updateUserExpenses(userId: number, expenseAmount: number) {
     const userExpenseIndex = this.userExpenses.findIndex(expense => expense.userId === userId);
 
     if (userExpenseIndex !== -1) {
       this.userExpenses[userExpenseIndex].totalExpense += expenseAmount;
 
-      // Fetch username from UserService based on the userId
-      this.userService.getUsername(userId).subscribe(
-        (username: string) => {
-          this.userExpenses[userExpenseIndex].username = username;
-        },
-        error => {
-          console.error('Error fetching username', error);
-        }
-      );
-
       if (userId === this.userIdToFind) {
         this.totalExpenseForUser = this.userExpenses[userExpenseIndex].totalExpense;
       }
     } else {
-      // Fetch username from UserService based on the userId
-      this.userService.getUsername(userId).subscribe(
-        (username: string) => {
-          this.userExpenses.push({ userId, totalExpense: expenseAmount, username });
-        },
-        error => {
-          console.error('Error fetching username', error);
-        }
-      );
+      this.userExpenses.push({ userId, totalExpense: expenseAmount });
     }
   }
 
@@ -140,15 +155,14 @@ export class DistributionPageComponent implements OnInit {
     }
   }
 
-  getUsername(userIdToFind: number): string {
-    const userExpense = this.userExpenses.find(expense => expense.userId === userIdToFind);
-
-    if (userExpense) {
-      return userExpense.username;
-    } else {
-      console.log(`User with userId ${userIdToFind} not found in the array.`);
-      return '0';
-    }
+  togglePDF() {
+    this.showPDF = !this.showPDF;
   }
+
+  // getUsername(userId: number): string {
+  //   const user = this.userNames.find(user => user.userId === userId);
+  //   console.log('User:', user);
+  //   return user ? user.userName : '';
+  // }
 }
 

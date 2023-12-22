@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {GlobalConstants} from "../global/global-constants";
-import {AuthService} from "./auth.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {catchError, map, Observable, of} from "rxjs";
+import {catchError, map, Observable, of, tap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +9,9 @@ import {catchError, map, Observable, of} from "rxjs";
 export class UserService {
 
   userURL: string = GlobalConstants.userURL;
+  private userCache: { id: number; username: string }[] = [];
 
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor(private http: HttpClient) {
   }
 
   getUser(id: number) {
@@ -19,13 +19,21 @@ export class UserService {
     return this.http.get(url, { withCredentials: true });
   }
 
-  getUsername(userId: number): Observable<string> {
-    // Assuming your API returns an object with a 'username' property
-    return this.getUser(userId).pipe(
-      map((user: any) => user.username),
-      catchError(error => {
-        console.error('Error fetching username', error);
-        return of(''); // Provide a default value or handle the error as needed
+  getUsernames():  Observable<{ id: number; username: string }[]> {
+    const url = `${this.userURL}/all/usernames`;
+
+    if (this.userCache.length > 0) {
+      return of(this.userCache);
+    }
+
+    return this.http.get<{ id: number; username: string }[]>(url, { withCredentials: true }).pipe(
+      tap((users) => {
+        // Update the cache with the fetched data
+        this.userCache = users;
+      }),
+      catchError((error) => {
+        console.error('Error fetching users', error);
+        return of([]);
       })
     );
   }

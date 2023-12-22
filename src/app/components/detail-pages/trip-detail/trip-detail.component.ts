@@ -112,6 +112,7 @@ export class TripDetailComponent implements OnInit {
         this.userTripDTOs = userTrips.map(userTrip => ({
           id: userTrip.id,
           userId: userTrip.userId,
+          username: userTrip.username,
           tripId: userTrip.tripId,
           owedAmount: userTrip.owedAmount,
           days: userTrip.days || 0
