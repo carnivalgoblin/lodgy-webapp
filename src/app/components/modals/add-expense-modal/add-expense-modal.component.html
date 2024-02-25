@@ -53,11 +53,13 @@
       <h2>Add Expense</h2>
       <!-- Add your form fields here -->
       <mat-form-field>
-        <input matInput type="number" placeholder="Amount" [(ngModel)]="amount">
+        <mat-label>Amount</mat-label>
+        <input matInput type="number" [(ngModel)]="amount" (input)="onInputChange($event)">
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input matInput type="number" placeholder="userID" [(ngModel)]="userId">
+        <mat-label>Username</mat-label>
+        <input matInput type="string" placeholder="Username" [(ngModel)]="userName" [disabled]="!(isAdmin || isMod)">
       </mat-form-field>
       <br>
       <mat-form-field>
@@ -68,6 +70,7 @@
       </mat-form-field>
       <br>
       <mat-form-field>
+        <mat-label>Description</mat-label>
         <input matInput type="text" placeholder="Description" [(ngModel)]="description">
       </mat-form-field>
       <br>

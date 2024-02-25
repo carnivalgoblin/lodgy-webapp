@@ -1,6 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {SnackbarService} from "../../../services/snackbar.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {TripService} from "../../../services/trip.service";
+import {UserService} from "../../../services/user.service";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'add-expense-modal',
@@ -8,8 +11,9 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
   styleUrl: './add-expense-modal.component.scss'
 })
 export class AddExpenseModalComponent implements OnInit{
-  amount?: number;
+  amount = 0;
   userId?: number;
+  userName?: string;
   tripId?: number;
   description?: string;
 
@@ -18,16 +22,44 @@ export class AddExpenseModalComponent implements OnInit{
   isPreselected: boolean = false;
 
   trips?: any[];
-  selectedTrip: any;
+  selectedTrip?: number;
 
   constructor(
     private snackbarService: SnackbarService,
+    private tripService: TripService,
+    private userService: UserService,
     public dialogRef: MatDialogRef<AddExpenseModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit() {
-    this.trips = this.data.trips;
+
+    console.log('Data:', this.data);
+    if (this.data.tripId) {
+      this.selectedTrip = this.data.tripId;
+      console.log('Selected Trip:', this.selectedTrip);
+    }
+
+    this.tripService.getTrips().subscribe({
+      next: (trips) => {
+        this.trips = trips;
+      },
+      error: (error) => {
+        console.error('Error fetching trips', error);
+      }
+    });
+
+    this.userService.getUser(Number(localStorage.getItem('loggedUserId'))).subscribe({
+      next: (user) => {
+        this.userId = user.id;
+        this.userName = user.username;
+        console.log('Fetched user:', user);
+      },
+      error: (error) => {
+        console.error('Error fetching user', error);
+      }
+    });
+
     this.isPreselected = this.data.isPreselected;
     console.log('Data:', this.trips);
     console.log('isPreselected:', this.data.isPreselected);
@@ -40,6 +72,14 @@ export class AddExpenseModalComponent implements OnInit{
       + ('isMod:' + this.isMod));
   }
 
+  onInputChange(event: Event) {
+    const inputValue = (event.target as HTMLInputElement).value;
+    const formattedValue = inputValue.replace(',', '.');
+    const parsedValue = parseFloat(formattedValue);
+    this.amount = parsedValue;
+    console.log('Amount:', this.amount);
+  }
+
   onAddExpense() {
     this.snackbarService.openSnackbar('Not implemented yet!');
     console.log('Selected Trip:', this.selectedTrip);
@@ -48,4 +88,5 @@ export class AddExpenseModalComponent implements OnInit{
   onClose() {
     this.dialogRef.close();
   }
+
 }

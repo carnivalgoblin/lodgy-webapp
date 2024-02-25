@@ -21,6 +21,10 @@ export class AuthService {
     return this.http.post<any>(this.authURL + '/signin', loginPayload, { withCredentials: true });
   }
 
+  getCurrentUserId() {
+
+  }
+
   isAuthenticated(): boolean {
     // return document.cookie.includes('lodgy_token');
     return true;

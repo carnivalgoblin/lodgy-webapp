@@ -3,7 +3,7 @@ import {GlobalConstants} from "../global/global-constants";
 import {HttpClient} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import {Trip} from "../models/trip";
-import {Observable} from "rxjs";
+import {Observable, shareReplay} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +12,29 @@ export class TripService {
 
   apiURL: string = GlobalConstants.apiURL;
   tripURL: string = GlobalConstants.tripURL;
+  private trips$!: Observable<Trip[]>;
 
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) {
+    this.fetchTrips();
+  }
+
+
+  private fetchTrips(): void {
+    const url = `${this.tripURL}/all`;
+    this.trips$ = this.http.get<Trip[]>(url, { withCredentials: true }).pipe(
+      shareReplay(1)
+    );
   }
 
   getTrips(): Observable<Trip[]> {
-    const url = `${this.tripURL}/`;
+    return this.trips$;
+  }
+
+  getTripsByUserId(userId: number): Observable<Trip[]> {
+    const url = `${this.tripURL}/user/${userId}`;
     return this.http.get<Trip[]>(url, { withCredentials: true });
   }
 

@@ -10,7 +10,7 @@ import {UpdateExpenseModalComponent} from "../components/modals/update-expense-m
 export class ModalService {
   constructor(public dialog: MatDialog) {}
 
-  openAddExpenseModal(trips: any[], isAdmin: boolean, isMod: boolean, isPreselected: boolean): void {
+  openAddExpenseModal(isAdmin: boolean, isMod: boolean, isPreselected: boolean, tripId?: number): void {
     const classes: string[] = ['expense-add-modal-panel'];
 
     if (isAdmin) {
@@ -31,7 +31,7 @@ export class ModalService {
 
     const dialogRef = this.dialog.open(AddExpenseModalComponent, {
       panelClass: classes.join('-'), // Combine the classes into a space-separated string
-      data: { trips: trips, isPreselected: isPreselected }
+      data: { isPreselected: isPreselected, tripId: tripId}
     });
   }
 

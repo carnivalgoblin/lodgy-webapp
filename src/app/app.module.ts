@@ -1,5 +1,7 @@
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -38,7 +40,10 @@ import {UpdateExpenseModalComponent} from './components/modals/update-expense-mo
 import {MatSelectModule} from "@angular/material/select";
 import {DistributionPageComponent} from './components/pages/distribution-page/distribution-page.component';
 import {MatTableModule} from "@angular/material/table";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { TwoDecimalDirective } from './directives/two-decimal.directive';
 
+registerLocaleData(localeDe);
 
 @NgModule({
   declarations: [
@@ -63,7 +68,8 @@ import {MatTableModule} from "@angular/material/table";
     AddTripModalComponent,
     AddExpenseModalComponent,
     UpdateExpenseModalComponent,
-    DistributionPageComponent
+    DistributionPageComponent,
+    TwoDecimalDirective
   ],
   imports: [
     BrowserModule,
@@ -84,8 +90,13 @@ import {MatTableModule} from "@angular/material/table";
     MatSelectModule,
     MatTableModule,
     BrowserAnimationsModule,
+    MatProgressSpinnerModule,
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'de' }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

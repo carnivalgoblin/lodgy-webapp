@@ -2,8 +2,8 @@
 <div class="trip-card card" (click)="openTripDetail(trip.id)">
   <div class="card-content">
     <h3 class="text text-bold">Ziel:</h3><span class="text text-large">{{ trip.destination }}</span><br><br>
-    <p><span class="text text-bold">Start:</span> <br><span class="text">{{ formattedStartDate }}</span></p>
-    <p><span class="text text-bold">End:</span> <br><span class="text">{{ formattedEndDate }}</span></p>
+    <p><span class="text text-bold">Start:</span> <br><span class="text">{{ formattedStartDate | date : 'mediumDate' : 'undefined' : 'de' }}</span></p>
+    <p><span class="text text-bold">End:</span> <br><span class="text">{{ formattedEndDate | date : 'mediumDate' : 'undefined' : 'de' }}</span></p>
     <p><span class="text">{{ trip.description }}</span></p>
   </div>
 </div>

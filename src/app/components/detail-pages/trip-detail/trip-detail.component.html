@@ -4,9 +4,9 @@
   <h2 class="text-center">{{ trip?.name }}</h2>
 
   <div class="trip-details card">
-    <h2 class="text">Destination: {{ trip?.destination }} - {{ startDate | date: 'yyyy'}}</h2>
-    <p class="text">Start Date: {{ startDate }}</p>
-    <p class="text">End Date: {{ endDate }}</p>
+    <h2 class="text">Destination: {{ trip?.destination }} - {{ startDate | date: 'y'}}</h2>
+    <p class="text">Start Date: {{ startDate | date: 'mediumDate' : 'undefined' : 'de' }}</p>
+    <p class="text">End Date: {{ endDate | date: 'mediumDate' : 'undefined' : 'de' }}</p>
     <p class="text">Description: {{ trip?.description }}</p>
     <p class="text">Total Expenses: {{ totalExpenses }} €</p>
   </div>

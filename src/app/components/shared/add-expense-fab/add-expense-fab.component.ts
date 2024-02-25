@@ -31,7 +31,7 @@ export class AddExpenseFabComponent implements OnInit{
   }
 
   handleAddExpenseClick(): void {
-    this.modalService.openAddExpenseModal(this.trips, this.isAdmin, this.isMod, this.isPreselected);
+    this.modalService.openAddExpenseModal(this.isAdmin, this.isMod, this.isPreselected);
     console.log('Add Expense clicked!');
     this.snackbarService.openSnackbar('Add Expense clicked!');
   }

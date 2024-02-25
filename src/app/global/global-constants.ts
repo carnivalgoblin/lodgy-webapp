@@ -68,8 +68,8 @@ export class GlobalConstants {
     {
       id: 5,
       destination: 'Rome',
-      startDate: new Date('2022-01-01'),
-      endDate: new Date('2022-01-10'),
+      startDate: new Date('2024-01-01'),
+      endDate: new Date('20224-12-10'),
       userIds: [1, 2],
       expenseIds: [1, 2],
       description: 'The Eternal City, known for its ancient history and architecture.'
@@ -77,8 +77,8 @@ export class GlobalConstants {
     {
       id: 6,
       destination: 'Madrid',
-      startDate: new Date('2024-02-01'),
-      endDate: new Date('2024-02-10'),
+      startDate: new Date('2025-02-01'),
+      endDate: new Date('2025-02-10'),
       userIds: [1, 2],
       expenseIds: [1, 2],
       description: 'The capital and largest city of Spain, famous for its lively atmosphere.'
@@ -140,16 +140,16 @@ export class GlobalConstants {
     },
     {
       "id": 2,
-      "userId": 1,
+      "userId": 2,
       "tripId": 1,
-      "days": 5,
+      "days": 3,
       "owedAmount": 0.0
     },
     {
       "id": 3,
-      "userId": 1,
+      "userId": 3,
       "tripId": 1,
-      "days": 5,
+      "days": 7,
       "owedAmount": 0.0
     }
   ]

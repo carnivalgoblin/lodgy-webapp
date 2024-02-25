@@ -19,8 +19,8 @@ export class TripDetailComponent implements OnInit {
 
   navbarLinks = GlobalConstants.navbarLinks;
   trip: any;
-  // trips: any[] = [];
-  trips: any[] = GlobalConstants.mockTrips;
+  trips: any[] = [];
+  // trips: any[] = GlobalConstants.mockTrips;
   totalExpenses: number = 0;
   isParticipating: boolean = false;
 
@@ -58,36 +58,45 @@ export class TripDetailComponent implements OnInit {
       this.isMod = true;
     }
 
+    this.tripService.getTrips().subscribe({
+      next: (trips) => {
+        this.trips = trips;
+      },
+      error: (error) => {
+        console.error('Error fetching trips', error);
+      }
+    });
+
     this.route.params.subscribe(params => {
       const tripId = +params['id'];
       this.tripId = tripId;
       console.log('Trip ID:', tripId);
 
       // Call the getTrip method from the TripService
-      this.tripService.getTrip(tripId).subscribe(
-        (data: Trip) => {
+      this.tripService.getTrip(tripId).subscribe({
+        next: (data: Trip) => {
           this.trip = data;
-          this.convertStartAndEndDate();
+          this.startDate = this.trip.startDate;
+          this.endDate = this.trip.endDate;
           this.tripUserIds = this.trip.userIds;
           this.tripExpenseIds = this.trip.expenseIds;
 
           console.log('Trip details fetched successfully: ' + this.trip.destination);
-
         },
-        error => {
+        error: (error) => {
           console.error('Error fetching trip details', error);
         }
-      );
+      });
 
-      this.expenseService.getExpensesByTripId(tripId).subscribe(
-        (data: any) => {
+      this.expenseService.getExpensesByTripId(tripId).subscribe({
+        next: (data: any) => {
           this.totalExpenses = data.amount;
           console.log('Expenses fetched successfully: ' + data);
         },
-        error => {
+        error: (error) => {
           console.error('Error fetching expenses', error);
         }
-      );
+      });
     });
 
   this.tripService.getUserTrips(this.tripId).subscribe(
@@ -104,8 +113,8 @@ export class TripDetailComponent implements OnInit {
     forkJoin([
       this.tripService.getUserTrips(tripId),
       this.tripService.distributeCosts(tripId, this.userTripDTOs, this.basedOnDays)
-    ]).subscribe(
-      ([userTrips, distributionResult]) => {
+    ]).subscribe({
+      next: ([userTrips, distributionResult]) => {
         console.log('User Trips:', userTrips);
 
         // Construct userTripDTOs using userTrips data
@@ -123,16 +132,16 @@ export class TripDetailComponent implements OnInit {
         this.dataService.setDistributionResult(distributionResult);
 
         this.router.navigate([`/trip/${tripId}/distribute`, { tripId: tripId }]);
-
       },
-      (error) => {
+      error: (error) => {
         console.error('Failed to fetch user trips or distribute costs', error);
       }
-    );
+    });
   }
 
   addExpenses() {
-    this.modalService.openAddExpenseModal(this.trips, this.isAdmin, this.isMod, this.isPreselected);
+    this.modalService.openAddExpenseModal(this.isAdmin, this.isMod, this.isPreselected, this.tripId);
+    console.log(this.tripId);
     //admin, mod, preselected
     this.snackbarService.openSnackbar('Not implemented yet');
   }
@@ -155,22 +164,4 @@ export class TripDetailComponent implements OnInit {
     }
   }
 
-  private convertStartAndEndDate() {
-    if (this.trip) {
-      const startDateString = this.trip.startDate;
-      const endDateString = this.trip.endDate;
-
-      // Convert start date
-      const startDate = this.convertToDate(startDateString);
-      if (startDate !== null) {
-        this.startDate = startDate.toLocaleDateString('de-DE', this.dateOptions);
-      }
-
-      // Convert end date
-      const endDate = this.convertToDate(endDateString);
-      if (endDate !== null) {
-        this.endDate = endDate.toLocaleDateString('de-DE', this.dateOptions);
-      }
-    }
-  }
 }
