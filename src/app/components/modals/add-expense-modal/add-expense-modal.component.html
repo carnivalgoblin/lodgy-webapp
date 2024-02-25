@@ -1,6 +1,6 @@
-<ng-container [ngTemplateOutlet]="isAdmin ? admin : isMod ? mod : isPreselected ? preselected : default"></ng-container>
+<ng-container [ngTemplateOutlet]="isAdmin ? admin : isMod ? mod : isPreselected ? preselected : defaultTemplate"></ng-container>
 
-<ng-template #default>
+<ng-template #defaultTemplate>
   <div class="modal">
     <div class="modal-content">
       <h2>Add Expense</h2>
@@ -59,13 +59,13 @@
       <br>
       <mat-form-field>
         <mat-label>Username</mat-label>
-        <input matInput type="string" placeholder="Username" [(ngModel)]="userName" [disabled]="!(isAdmin || isMod)">
+        <input matInput type="string" placeholder="Username" [spellcheck]="false" [(ngModel)]="userName" [disabled]="!(isAdmin || isMod)">
       </mat-form-field>
       <br>
       <mat-form-field>
         <mat-label>Select a Trip:</mat-label>
         <mat-select [(ngModel)]="selectedTrip" name="trip" required>
-          <mat-option *ngFor="let trip of trips" [value]="trip.id">{{ trip.destination }} - {{ trip.startDate | date: 'yyyy'}}</mat-option>
+          <mat-option *ngFor="let trip of trips" [value]="trip.id">{{ trip.destination }} - {{ trip.startDate | date: 'MMM Y'}}</mat-option>
         </mat-select>
       </mat-form-field>
       <br>
