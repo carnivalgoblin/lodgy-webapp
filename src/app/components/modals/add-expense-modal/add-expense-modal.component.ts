@@ -3,7 +3,7 @@ import {SnackbarService} from "../../../services/snackbar.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {TripService} from "../../../services/trip.service";
 import {UserService} from "../../../services/user.service";
-import {FormControl} from "@angular/forms";
+import {ExpenseService} from "../../../services/expense.service";
 
 @Component({
   selector: 'add-expense-modal',
@@ -28,6 +28,7 @@ export class AddExpenseModalComponent implements OnInit{
     private snackbarService: SnackbarService,
     private tripService: TripService,
     private userService: UserService,
+    private expenseService: ExpenseService,
     public dialogRef: MatDialogRef<AddExpenseModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
@@ -75,14 +76,35 @@ export class AddExpenseModalComponent implements OnInit{
   onInputChange(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;
     const formattedValue = inputValue.replace(',', '.');
-    const parsedValue = parseFloat(formattedValue);
-    this.amount = parsedValue;
+    this.amount = parseFloat(formattedValue);
     console.log('Amount:', this.amount);
   }
 
   onAddExpense() {
-    this.snackbarService.openSnackbar('Not implemented yet!');
+    // this.snackbarService.openSnackbar('Not implemented yet!');
     console.log('Selected Trip:', this.selectedTrip);
+
+    const expense = {
+      amount: this.amount!,
+      description: this.description,
+      userId: this.userId!,
+      tripId: this.selectedTrip!
+    }
+
+    console.log('Expense:', expense);
+
+    this.expenseService.createExpense(expense).subscribe({
+      next: (response) => {
+        console.log('Expense added:', response);
+        this.snackbarService.openSnackbar('Expense added');
+        this.dialogRef.close();
+      },
+      error: (error) => {
+        console.error('Error adding expense', error);
+        this.snackbarService.openSnackbar('Error adding expense');
+      }
+    });
+
   }
 
   onClose() {

@@ -53,7 +53,7 @@ export class ProfileComponent implements OnInit{
   }
 
   get sortedAndSlicedExpenses() {
-    const sortedExpenses = this.expenses.sort((a, b) => b.id - a.id);
+    const sortedExpenses = this.expenses.sort((a, b) => b.id! - a.id!);
 
     return sortedExpenses.slice(0, 2);
 

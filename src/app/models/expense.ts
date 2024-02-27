@@ -1,8 +1,9 @@
 export interface Expense {
 
-  id: number;
+  id?: number;
   tripId: number;
   userId: number;
-  description: string;
+  description?: string;
   amount: number;
 }
+

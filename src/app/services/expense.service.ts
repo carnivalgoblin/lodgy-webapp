@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {GlobalConstants} from "../global/global-constants";
-import {HttpClient} from "@angular/common/http";
-import {AuthService} from "./auth.service";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Expense} from "../models/expense";
 
@@ -12,7 +11,7 @@ export class ExpenseService {
 
   expenseURL: string = GlobalConstants.expenseURL;
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient) { }
 
   getExpenses() {
     const url = `${this.expenseURL}/`;
@@ -27,5 +26,12 @@ export class ExpenseService {
   getExpensesByTripId(tripId: number) {
     const url = `${this.expenseURL}/trip/${tripId}/total`;
     return this.http.get(url, { withCredentials: true });
+  }
+
+  createExpense(expense: Expense) {
+    const url = `${this.expenseURL}/create`;
+    const tripId = expense.tripId;
+    const params = new HttpParams().set('tripId', tripId);
+    return this.http.post(url, expense, { params, withCredentials: true });
   }
 }
