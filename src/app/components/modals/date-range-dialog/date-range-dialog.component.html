@@ -1,0 +1,24 @@
+<div class="modal">
+  <div class="modal-content">
+    <h1 mat-dialog-title>Select Dates</h1>
+    <div mat-dialog-content [formGroup]="dateRangeForm">
+      <mat-form-field>
+        <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date" formControlName="startDate"
+               [matDatepickerFilter]="filterStartDate">
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [matDatepicker]="endDatePicker" placeholder="End Date" formControlName="endDate"
+               [matDatepickerFilter]="filterEndDate">
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+      </mat-form-field>
+      <p>You will participate for <strong>{{ numberOfDays }}</strong> days.</p>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-raised-button class="button" (click)="onCancel()">Cancel</button>
+      <button mat-raised-button class="button save" (click)="onSave()">Save</button>
+    </div>
+  </div>
+</div>

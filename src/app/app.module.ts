@@ -1,6 +1,6 @@
 import {LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import { registerLocaleData } from '@angular/common';
+import {NgOptimizedImage, registerLocaleData} from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -8,7 +8,7 @@ import {AppComponent} from './app.component';
 import {LandingComponent} from './components/landing/landing.component';
 import {RegisterComponent} from './components/auth-pages/register/register.component';
 import {LoginComponent} from './components/auth-pages/login/login.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavigationComponent} from './components/shared/navigation/navigation.component';
 import {MatCardModule} from "@angular/material/card";
@@ -18,7 +18,6 @@ import {ProfileComponent} from './components/profile/profile.component';
 import {HttpClientModule} from "@angular/common/http";
 import {TripCardComponent} from './components/cards/trip-card/trip-card.component';
 import {ExpenseCardComponent} from './components/cards/expense-card/expense-card.component';
-import {NgOptimizedImage} from "@angular/common";
 import {SummaryCardComponent} from './components/cards/summary-card/summary-card.component';
 import {TripsPageComponent} from './components/pages/trips-page/trips-page.component';
 import {ExpensesPageComponent} from './components/pages/expenses-page/expenses-page.component';
@@ -41,7 +40,9 @@ import {MatSelectModule} from "@angular/material/select";
 import {DistributionPageComponent} from './components/pages/distribution-page/distribution-page.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import { TwoDecimalDirective } from './directives/two-decimal.directive';
+import {TwoDecimalDirective} from './directives/two-decimal.directive';
+import {DateRangeDialogComponent} from './components/modals/date-range-dialog/date-range-dialog.component';
+import {MatDialogActions, MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
 
 registerLocaleData(localeDe);
 
@@ -69,7 +70,8 @@ registerLocaleData(localeDe);
     AddExpenseModalComponent,
     UpdateExpenseModalComponent,
     DistributionPageComponent,
-    TwoDecimalDirective
+    TwoDecimalDirective,
+    DateRangeDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -91,6 +93,10 @@ registerLocaleData(localeDe);
     MatTableModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'de' }

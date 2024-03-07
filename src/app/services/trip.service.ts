@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {GlobalConstants} from "../global/global-constants";
-import {HttpClient} from "@angular/common/http";
-import {AuthService} from "./auth.service";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Trip} from "../models/trip";
 import {Observable, shareReplay} from "rxjs";
 
@@ -15,8 +14,7 @@ export class TripService {
   private trips$!: Observable<Trip[]>;
 
   constructor(
-    private http: HttpClient,
-    private authService: AuthService
+    private http: HttpClient
   ) {
     this.fetchTrips();
   }
@@ -60,6 +58,17 @@ export class TripService {
     const payload =  userTripDTOs;
     console.log(payload);
     return this.http.post<any>(url, payload, { withCredentials: true });
+  }
+
+  joinTrip(tripId: number, userId: number, days: number): Observable<any> {
+    const url = `${this.tripURL}/${tripId}/users/${userId}`;
+    const params = new HttpParams().set('days', days);
+    return this.http.post<any>(url, null, { params, withCredentials: true });
+  }
+
+  leaveTrip(tripId: number, userId: number): Observable<any> {
+    const url = `${this.tripURL}/${tripId}/users/${userId}`;
+    return this.http.delete<any>(url, { withCredentials: true });
   }
 
 }

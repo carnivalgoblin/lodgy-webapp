@@ -9,6 +9,7 @@ import {ModalService} from "../../../services/modal.service";
 import {MatDialog} from "@angular/material/dialog";
 import {forkJoin} from "rxjs";
 import {DataService} from "../../../services/data.service";
+import {DateRangeDialogComponent} from "../../modals/date-range-dialog/date-range-dialog.component";
 
 @Component({
   selector: 'trip-detail',
@@ -23,6 +24,7 @@ export class TripDetailComponent implements OnInit {
   // trips: any[] = GlobalConstants.mockTrips;
   totalExpenses: number = 0;
   isParticipating: boolean = false;
+  userId = Number(localStorage.getItem('loggedUserId'));
 
   dateOptions: any = GlobalConstants.dateOptions;
   startDate!: string;
@@ -81,7 +83,11 @@ export class TripDetailComponent implements OnInit {
           this.tripUserIds = this.trip.userIds;
           this.tripExpenseIds = this.trip.expenseIds;
 
-          console.log('Trip details fetched successfully: ' + this.trip.destination);
+          if (this.trip.userIds.includes(Number(localStorage.getItem('loggedUserId')))) {
+            this.isParticipating = true;
+          }
+
+          console.log('Trip details fetched successfully: ', this.trip);
         },
         error: (error) => {
           console.error('Error fetching trip details', error);
@@ -91,7 +97,7 @@ export class TripDetailComponent implements OnInit {
       this.expenseService.getExpensesByTripId(tripId).subscribe({
         next: (data: any) => {
           this.totalExpenses = data.amount;
-          console.log('Expenses fetched successfully: ' + data);
+          console.log('Expenses fetched successfully: ', data);
         },
         error: (error) => {
           console.error('Error fetching expenses', error);
@@ -102,7 +108,7 @@ export class TripDetailComponent implements OnInit {
   this.tripService.getUserTrips(this.tripId).subscribe(
     (data: any) => {
       this.userTripDTOs = data;
-      console.log('User trips fetched successfully: ' + data);
+      console.log('User trips fetched successfully: ', data);
     });
   }
 
@@ -147,9 +153,45 @@ export class TripDetailComponent implements OnInit {
   }
 
   participate() {
-    this.isParticipating =! this.isParticipating;
-    this.snackbarService.openSnackbar('Not implemented yet');
-  }
+
+      if (!this.isParticipating) {
+        const dialogRef = this.dialog.open(DateRangeDialogComponent, {
+          data: {startDate: this.startDate, endDate: this.endDate},
+          panelClass: 'date-range-dialog-panel'
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            this.tripService.joinTrip(this.tripId, this.userId, result).subscribe({
+              next: (data) => {
+                console.log('Joined trip:', data);
+                this.snackbarService.openSnackbar('Joined trip');
+              },
+              error: (error) => {
+                console.error('Error joining trip', error);
+                this.snackbarService.openSnackbar('Failed to join trip');
+              }
+            });
+            this.isParticipating = true;
+            this.snackbarService.openSnackbar('Joined trip');
+          } else {
+            console.log('No days selected');
+          }
+        });
+      } else {
+        this.tripService.leaveTrip(this.tripId, this.userId).subscribe({
+          next: (data) => {
+            console.log('Left trip:', data);
+            this.isParticipating = false;
+            this.snackbarService.openSnackbar('Left trip');
+          },
+          error: (error) => {
+            console.error('Error leaving trip', error);
+            this.snackbarService.openSnackbar('Failed to leave trip');
+          }
+        });
+      }
+    }
 
 
   private convertToDate(dateString: string): Date | null {

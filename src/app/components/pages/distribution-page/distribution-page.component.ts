@@ -1,11 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from "../../../services/data.service";
 import {Trip} from "../../../models/trip";
 import {TripService} from "../../../services/trip.service";
 import {ActivatedRoute} from "@angular/router";
 import {ExpenseService} from "../../../services/expense.service";
 import {Expense} from "../../../models/expense";
-import {UserService} from "../../../services/user.service";
 import {DistributionResultElement} from "../../../models/distribution-result-element";
 
 @Component({
@@ -66,7 +65,7 @@ export class DistributionPageComponent implements OnInit {
         // Extract the 'id' parameter from the parent route (TripDetailComponent)
         this.tripId = +parentParams['id'];
         console.log('Trip ID in DistributionPageComponent:', this.tripId);
-        if (this.tripId !== undefined || this.tripId !== null) {
+        if (this.tripId !== undefined || this.tripId) {
           this.getTripWithExpenses(this.tripId);
         }
       });

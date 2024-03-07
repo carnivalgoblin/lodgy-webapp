@@ -26,4 +26,9 @@
     color: $warn-text-color !important;
     opacity: 1;
   }
+
+  &.save {
+    background-color: $secondary-color !important;
+    //color: $primary-color !important;
+  }
 }

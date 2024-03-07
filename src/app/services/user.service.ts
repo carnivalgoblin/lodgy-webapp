@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {GlobalConstants} from "../global/global-constants";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {catchError, map, Observable, of, shareReplay, tap} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {catchError, Observable, of, shareReplay, tap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,7 @@ export class UserService {
     );
   }
 
-  getUser(id: number) {
+  getUser() {
     return this.user$;
   }
 
