@@ -50,7 +50,7 @@ export class AddExpenseModalComponent implements OnInit{
       }
     });
 
-    this.userService.getUser(Number(localStorage.getItem('loggedUserId'))).subscribe({
+    this.userService.getUser().subscribe({
       next: (user) => {
         this.userId = user.id;
         this.userName = user.username;

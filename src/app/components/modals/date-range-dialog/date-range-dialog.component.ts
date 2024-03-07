@@ -68,11 +68,10 @@ export class DateRangeDialogComponent implements OnInit{
   }
 
   filterStartDate = (date: Date | null): boolean => {
-    return dateRangeFilter(this.minStartDate, this.maxEndDate)(date!);
+    return dateRangeFilter(this.minStartDate, this.dateRangeForm.value.endDate)(date!);
   };
 
   filterEndDate = (date: Date | null): boolean => {
-    const startDate = this.dateRangeForm.value.startDate;
-    return dateRangeFilter(startDate, null!)(date!);
+    return dateRangeFilter(this.dateRangeForm.value.startDate, this.maxEndDate)(date!);
   };
 }
