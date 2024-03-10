@@ -9,6 +9,7 @@ export class AuthService {
 
   apiURL: string = GlobalConstants.apiURL;
   authURL: string = GlobalConstants.authURL;
+  userURL: string = GlobalConstants.userURL;
 
   constructor(private http: HttpClient) {}
 
@@ -21,8 +22,8 @@ export class AuthService {
     return this.http.post<any>(this.authURL + '/signin', loginPayload, { withCredentials: true });
   }
 
-  getCurrentUserId() {
-
+  getCurrentUserId(): any {
+    return this.http.get(this.userURL + '/current', { withCredentials: true });
   }
 
   isAuthenticated(): boolean {

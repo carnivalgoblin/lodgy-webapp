@@ -18,6 +18,11 @@ export class ExpenseService {
     return this.http.get(url, { withCredentials: true });
   }
 
+  getExpensesByUserId(userId: number): Observable<Expense[]> {
+    const url = `${this.expenseURL}/user/${userId}`;
+    return this.http.get<Expense[]>(url, { withCredentials: true });
+  }
+
   getExpense(id: number): Observable<Expense> {
     const url = `${this.expenseURL}/${id}`;
     return this.http.get<Expense>(url, { withCredentials: true });
