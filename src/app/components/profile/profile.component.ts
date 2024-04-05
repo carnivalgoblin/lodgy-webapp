@@ -3,6 +3,8 @@ import {Trip} from "../../models/trip";
 import {Expense} from "../../models/expense";
 import {AuthService} from "../../services/auth.service";
 import {GlobalConstants} from "../../global/global-constants";
+import {TripService} from "../../services/trip.service";
+import {ExpenseService} from "../../services/expense.service";
 
 @Component({
   selector: 'app-profile',
@@ -21,15 +23,22 @@ export class ProfileComponent implements OnInit{
     { type: 'expenses', total: 7, amount: 100.5},
   ];
 
-  trips: Trip[] = GlobalConstants.mockTrips;
+  trips: Trip[] = [];
 
-  expenses: Expense[] = GlobalConstants.mockExpenses;
+  expenses: Expense[] = [];
 
   username: string = 'User';
 
-  constructor( private authService: AuthService ) {}
+  constructor(
+    private authService: AuthService,
+    private tripService: TripService,
+    private expenseService: ExpenseService
+  ) {}
 
   ngOnInit() {
+    this.getTripsForUser();
+    this.getExpenses();
+
     console.log(this.trips)
     console.log(this.expenses)
     this.getUsernameFromToken();
@@ -59,6 +68,25 @@ export class ProfileComponent implements OnInit{
 
   }
 
+  getTripsForUser() {
+    const userId = Number(localStorage.getItem('loggedUserId'));
+    this.tripService.getTripsByUserId(userId).subscribe({
+      next: (trips) => {
+        this.trips = trips;
+      },
+      error: (error) => {
+        console.error('Error fetching trips', error);
+      }
+    });
+  }
+
+  getExpenses() {
+    const userId = Number(localStorage.getItem('loggedUserId'));
+    console.log('Getting expenses for user with id:', userId);
+    this.expenseService.getExpensesByUserId(userId).subscribe((result) => {
+      this.expenses = result;
+    });
+  }
 
   getSummary() {
     //get trips summary

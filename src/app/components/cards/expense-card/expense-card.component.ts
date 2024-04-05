@@ -3,7 +3,6 @@ import {Expense} from "../../../models/expense";
 import {Router} from "@angular/router";
 import {Trip} from "../../../models/trip";
 import {TripService} from "../../../services/trip.service";
-import {GlobalConstants} from "../../../global/global-constants";
 
 @Component({
   selector: 'expense-card',
@@ -13,30 +12,36 @@ import {GlobalConstants} from "../../../global/global-constants";
 export class ExpenseCardComponent implements OnInit{
 
   @Input() expense!: Expense;
-  // tripId = this.expense.tripId;
-  // trip?: Trip;
-  trip: Trip = GlobalConstants.singleTrip
+
+  trip?: Trip;
+  // trip: Trip = GlobalConstants.singleTrip
   tripName?: string;
 
   constructor(
     private router: Router,
-              private tripService: TripService
+    private tripService: TripService
   ) {
   }
 
   ngOnInit() {
-    this.tripName = this.trip.destination + " " + this.trip.startDate.getUTCFullYear();
-    console.log(this.trip)
-    // this.tripService.getTrip(this.tripId).subscribe(
-    //   (data: Trip) => {
-    //     this.trip = data;
-    //     this.tripName = this.trip.destination + " " + this.trip.startDate.getUTCFullYear();
-    //     console.log('Trip details fetched successfully: ' + this.tripName);
-    //   },
-    //   error => {
-    //     console.error('Error fetching trip details', error);
-    //   }
-    // );
+    let tripId;
+    if (this.expense.tripId) {
+      tripId = this.expense.tripId;
+      this.tripService.getTrip(tripId).subscribe(
+        (data: Trip) => {
+          this.trip = data;
+          this.tripName = this.trip.destination + " - " + new Date(this.trip.startDate).getFullYear();
+          console.log('Trip details fetched successfully: ' + this.tripName);
+        },
+        error => {
+          console.error('Error fetching trip details', error);
+        }
+      );
+
+      this.tripName = this.trip?.destination + " " + this.trip?.startDate.getUTCFullYear();
+      console.log(this.trip)
+
+    }
   }
 
   openExpenseDetail(expenseId: number) {

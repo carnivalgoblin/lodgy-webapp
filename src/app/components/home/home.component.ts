@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {GlobalConstants} from "../../global/global-constants";
+import {TripService} from "../../services/trip.service";
 
 @Component({
   selector: 'home',
@@ -8,35 +9,47 @@ import {GlobalConstants} from "../../global/global-constants";
 })
 export class HomeComponent {
 
-  // trips: any[] = []; // Your array of trips
-  trips: any[] = GlobalConstants.mockTrips; // Mock Data
+  trips: any[] = [];
   navbarLinks: any[] = GlobalConstants.navbarLinks;
   currentTrips: any[] = [];
   upcomingTrips: any[] = [];
 
+  constructor(
+    private tripService: TripService
+  ) {
+  }
+
   ngOnInit(): void {
-    this.initializeTrips();
+    this.getTripsForUser();
     console.log(new Date().toJSON());
   }
 
+  getTripsForUser() {
+    const userId = Number(localStorage.getItem('loggedUserId'));
+    this.tripService.getTripsByUserId(userId).subscribe({
+      next: (trips) => {
+        this.trips = trips;
+        this.initializeTrips();
+      },
+      error: (error) => {
+        console.error('Error fetching trips', error);
+      }
+    });
+  }
+
   initializeTrips(): void {
-    // Assuming you have a Date object representing the current date
     const currentDate = new Date();
 
-    // Filter trips based on the current date
     this.currentTrips = this.trips.filter((trip) => {
       const startDate = new Date(trip.startDate);
       const endDate = new Date(trip.endDate);
 
-      // Check if the current date is on or between start and end dates
       return startDate <= currentDate && currentDate <= endDate;
     });
 
-    // Filter trips based on the current date for upcomingTrips
     this.upcomingTrips = this.trips.filter((trip) => {
       const startDate = new Date(trip.startDate);
 
-      // Check if the start date is after the current date
       return startDate > currentDate;
     });
 

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SnackbarService} from "../../../services/snackbar.service";
 import {ModalService} from "../../../services/modal.service";
-import {GlobalConstants} from "../../../global/global-constants";
+import {TripService} from "../../../services/trip.service";
 
 @Component({
   selector: 'add-expense-fab',
@@ -14,15 +14,16 @@ export class AddExpenseFabComponent implements OnInit{
   isMod: boolean = false;
   isPreselected: boolean = false;
 
-  // trips: any[] = [];
-  trips: any[] = GlobalConstants.mockTrips;
+  trips: any[] = [];
 
   constructor(
     private snackbarService: SnackbarService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private tripService: TripService
   ) {}
 
   ngOnInit() {
+    this.getTripsForUser();
     if (localStorage.getItem('isAdmin') === 'true') {
       this.isAdmin = true;
     } else if (localStorage.getItem('isMod') === 'true') {
@@ -36,5 +37,16 @@ export class AddExpenseFabComponent implements OnInit{
     this.snackbarService.openSnackbar('Add Expense clicked!');
   }
 
+  getTripsForUser() {
+    const userId = Number(localStorage.getItem('loggedUserId'));
+    this.tripService.getTripsByUserId(userId).subscribe({
+      next: (trips) => {
+        this.trips = trips;
+      },
+      error: (error) => {
+        console.error('Error fetching trips', error);
+      }
+    });
+  }
 
 }
