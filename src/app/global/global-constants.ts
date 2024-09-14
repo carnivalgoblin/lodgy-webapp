@@ -1,18 +1,12 @@
+import {environment} from "../../environments/environment";
+
 export class GlobalConstants {
 
-  // Local Testing API
-  public static apiURL: string = 'http://localhost:8080/api/';
+  public static apiURL: string = environment.apiUrl;
   public static authURL: string = GlobalConstants.apiURL + 'auth';
   public static userURL: string = GlobalConstants.apiURL + 'users';
   public static tripURL: string = GlobalConstants.apiURL + 'trips';
   public static expenseURL: string = GlobalConstants.apiURL + 'expenses';
-
-  // Production API
-  // public static apiURL: string = 'https://lodgy-server.rcprdn.co/api/';
-  // public static authURL: string = GlobalConstants.apiURL + 'auth';
-  // public static userURL: string = GlobalConstants.apiURL + 'users';
-  // public static tripURL: string = GlobalConstants.apiURL + 'trips';
-  // public static expenseURL: string = GlobalConstants.apiURL + 'expenses';
 
   // Standard NavBar Links
   public static navbarLinks = [
