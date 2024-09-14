@@ -25,7 +25,27 @@ pipeline {
             }
         }
 
+        stage('Check Commit Message') {
+            steps {
+                script {
+                    def commitMessage = sh(script: 'git log -1 --pretty=%B', returnStdout: true).trim()
+                    echo "Latest Commit Message: ${commitMessage}"
+
+                    if (commitMessage.contains('release_now')) {
+                        echo 'Commit message contains "release_now". Proceeding with build.'
+                        env.BUILD_ALLOWED = 'true'
+                    } else {
+                        echo 'Commit message does not contain "release_now". Skipping build.'
+                        env.BUILD_ALLOWED = 'false'
+                    }
+                }
+            }
+        }
+
         stage('Build Frontend') {
+            when {
+                expression { return env.BUILD_ALLOWED == 'true' }
+            }
             steps {
                 script {
                     sh 'npm install'
@@ -35,6 +55,9 @@ pipeline {
         }
 
         stage('Build Docker Image') {
+            when {
+                expression { return env.BUILD_ALLOWED == 'true' }
+            }
             steps {
                 script {
                     buildDockerImage("${DOCKER_REGISTRY}/${IMAGE_NAME}")
@@ -43,6 +66,9 @@ pipeline {
         }
 
         stage('Deploy Frontend Stack') {
+            when {
+                expression { return env.BUILD_ALLOWED == 'true' }
+            }
             steps {
                 script {
                   def apiKey = credentials('portainer-api-key')
