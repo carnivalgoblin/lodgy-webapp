@@ -9,7 +9,7 @@ pipeline {
         STACK_NAME = 'lodgy'
         STACK_FILE_PATH = 'lodgy.yml'
         REPO_URL = 'git@github.com:carnivalgoblin/docker-compose.git'
-        REPO_BRANCH = 'main'
+        REPO_BRANCH = 'master'
         ENDPOINT_ID = '2'
     }
 
@@ -25,65 +25,39 @@ pipeline {
             }
         }
 
-        stage('Check Commit Message') {
-            steps {
-                script {
-                    def commitMessage = sh(script: 'git log -1 --pretty=%B', returnStdout: true).trim()
-                    echo "Latest Commit Message: ${commitMessage}"
+        stage('Build Frontend') {
+                    steps {
+                        script {
+                            sh 'npm install'
+                            sh 'npm run build'
+                        }
+                    }
+                }
 
-                    if (commitMessage.contains('release_now')) {
-                        echo 'Commit message contains "release_now". Proceeding with build.'
-                        env.BUILD_ALLOWED = 'true'
-                    } else {
-                        echo 'Commit message does not contain "release_now". Skipping build.'
-                        env.BUILD_ALLOWED = 'false'
+                stage('Build Docker Image') {
+                    steps {
+                        script {
+                            buildDockerImage("${DOCKER_REGISTRY}/${IMAGE_NAME}")
+                        }
+                    }
+                }
+
+                stage('Deploy Frontend Stack') {
+                    steps {
+                        script {
+                            def apiKey = credentials('portainer-api-key')
+                            portainerLib.updateStack("${WORKSPACE}/${STACK_FILE_PATH}", STACK_NAME, PORTAINER_URL, apiKey, ENDPOINT_ID)
+                        }
                     }
                 }
             }
-        }
 
-        stage('Build Frontend') {
-            when {
-                expression { return env.BUILD_ALLOWED == 'true' }
-            }
-            steps {
-                script {
-                    sh 'npm install'
-                    sh 'npm run build'
+            post {
+                success {
+                    echo 'Frontend deployment was successful!'
+                }
+                failure {
+                    echo 'Frontend deployment failed.'
                 }
             }
         }
-
-        stage('Build Docker Image') {
-            when {
-                expression { return env.BUILD_ALLOWED == 'true' }
-            }
-            steps {
-                script {
-                    buildDockerImage("${DOCKER_REGISTRY}/${IMAGE_NAME}")
-                }
-            }
-        }
-
-        stage('Deploy Frontend Stack') {
-            when {
-                expression { return env.BUILD_ALLOWED == 'true' }
-            }
-            steps {
-                script {
-                  def apiKey = credentials('portainer-api-key')
-                    portainerLib.updateStack("${WORKSPACE}/${STACK_FILE_PATH}", STACK_NAME, PORTAINER_URL, apiKey, ENDPOINT_ID)
-                }
-            }
-        }
-    }
-
-    post {
-        success {
-            echo 'Frontend deployment was successful!'
-        }
-        failure {
-            echo 'Frontend deployment failed.'
-        }
-    }
-}
