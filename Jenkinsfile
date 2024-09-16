@@ -11,7 +11,12 @@ pipeline {
         REPO_URL = 'git@github.com:carnivalgoblin/docker-compose.git'
         REPO_BRANCH = 'master'
         ENDPOINT_ID = '2'
+        NODEJS_VERSION = 'node-20'
     }
+
+     tools {
+         nodejs "${NODEJS_VERSION}"
+     }
 
     stages {
         stage('Checkout Stack File') {
