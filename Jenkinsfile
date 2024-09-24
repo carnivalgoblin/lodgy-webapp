@@ -29,40 +29,6 @@ pipeline {
                     }
                 }
 
-        stage('Checkout Stack File') {
-            steps {
-                script {
-                    checkout([$class: 'GitSCM',
-                        branches: [[name: "*/${REPO_BRANCH_COMPOSE}"]],
-                        userRemoteConfigs: [[url: "${REPO_URL_COMPOSE}", credentialsId: 'gh']]
-                    ])
-                }
-            }
-        }
-
-        stage('Check Files') {
-            steps {
-                script {
-                    // List files in the backend
-                    sh 'pwd'
-                    sh 'ls -la'
-                    // List files in the docker-compose checkout
-                    dir('docker-compose-checkout') {
-                        sh 'ls -la'
-                    }
-                }
-            }
-        }
-
-        stage('Copy lodgy.yml') {
-            steps {
-                script {
-                    // Copy lodgy.yml to the backend directory
-                    sh 'cp docker-compose-checkout/lodgy.yml ./'
-                }
-            }
-        }
-
         stage('Build Frontend') {
                     steps {
                         script {
@@ -83,10 +49,10 @@ pipeline {
 
             post {
                 success {
-                    echo 'Frontend deployment was successful!'
+                    echo 'Frontend image build was successful!'
                 }
                 failure {
-                    echo 'Frontend deployment failed.'
+                    echo 'Frontend image build failed.'
                 }
             }
         }
