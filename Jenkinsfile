@@ -33,8 +33,8 @@ pipeline {
             steps {
                 script {
                     checkout([$class: 'GitSCM',
-                        branches: [[name: "*/${REPO_BRANCH}"]],
-                        userRemoteConfigs: [[url: "${REPO_URL}", credentialsId: 'gh']]
+                        branches: [[name: "*/${REPO_BRANCH_COMPOSE}"]],
+                        userRemoteConfigs: [[url: "${REPO_URL_COMPOSE}", credentialsId: 'gh']]
                     ])
                 }
             }
