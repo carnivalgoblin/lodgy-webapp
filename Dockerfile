@@ -9,10 +9,10 @@ RUN npm run build --prod
 # Production Stage
 FROM node:18-alpine
 WORKDIR /usr/share/nginx/html
-COPY --from=build /app/dist/lodgy-webapp ./
+COPY --from=build /app/dist/lodgy-webapp/browser ./
 
-# Optionally use a simple server to serve static files, e.g., http-server
+# Install http-server to serve static files
 RUN npm install -g http-server
-CMD ["http-server", "-p", "80"]
+CMD ["http-server", "-p", "80", "--silent"]
 
 EXPOSE 80
