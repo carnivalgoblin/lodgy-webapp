@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://lodgy-server.rcprdn.co/api'
+  apiUrl: 'https://lodgy-server.rcprdn.co/api/'
 };
