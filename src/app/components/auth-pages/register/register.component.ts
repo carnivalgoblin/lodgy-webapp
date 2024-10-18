@@ -43,7 +43,8 @@ export class RegisterComponent {
           if (this.authService.isAuthenticated()) {
             this.router.navigate(['/profile']);
           } else {
-            console.error('Authentication failed. Unable to retrieve token.');
+            console.error('Authentication failed. Unable to retrieve token. Redirecting to login page.');
+            this.router.navigate(['/login']);
           }
         },
         (error) => {
