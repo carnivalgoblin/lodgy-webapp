@@ -30,4 +30,13 @@ export class AuthService {
     // return document.cookie.includes('lodgy_token');
     return true;
   }
+
+  register(username: string, password: string) {
+    const registerPayload = {
+      username: username,
+      password: password,
+    }
+
+    return this.http.post<any>(this.authURL + '/signup', registerPayload, { withCredentials: true });
+  }
 }
