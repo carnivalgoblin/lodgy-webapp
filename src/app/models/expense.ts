@@ -5,5 +5,6 @@ export interface Expense {
   userId: number;
   description?: string;
   amount: number;
+  createdAt?: Date | string;
 }
 

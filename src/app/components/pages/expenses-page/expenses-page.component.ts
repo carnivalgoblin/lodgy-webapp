@@ -15,6 +15,7 @@ export class ExpensesPageComponent implements OnInit{
 
   userId!: number;
   expenses: Expense[] = [];
+  isLoading: boolean = true;
 
   constructor(
     private readonly expenseService: ExpenseService,
@@ -28,14 +29,29 @@ export class ExpensesPageComponent implements OnInit{
       this.getExpenses(this.userId);
       console.log(this.userId);
     });
+  }
 
+  sortExpenses() {
+    this.expenses = this.expenses.sort((a, b) => {
+      let aDate = a.createdAt ? new Date(a.createdAt) : new Date(0);
+      let bDate = b.createdAt ? new Date(b.createdAt) : new Date(0);
+      return bDate.getTime() - aDate.getTime();
+    });
   }
 
   getExpenses(userId: number) {
-  console.log('Getting expenses for user with id:', userId);
-    this.expenseService.getExpensesByUserId(userId).subscribe((result) => {
-      this.expenses = result;
-    });
+    console.log('Getting expenses for user with id:', userId);
+    this.expenseService.getExpensesByUserId(userId).subscribe({
+      next: (expenses) => {
+        this.expenses = expenses;
+        this.sortExpenses();
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Error fetching expenses', error);
+      }
+      }
+    );
   }
 
 }

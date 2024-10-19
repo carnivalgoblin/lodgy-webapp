@@ -4,7 +4,7 @@
 <div class="trips-container container">
   <h2 class="text-center text">All your trips</h2>
   <div class="carousel">
-    <ng-container *ngIf="isLoading; else content">
+    <ng-container *ngIf="isLoading; else tripsCard">
       <div class="spinner">
         <mat-spinner color="accent" diameter="50"></mat-spinner>
       </div>
@@ -15,7 +15,7 @@
 
 <fab-button></fab-button>
 
-<ng-template #content>
+<ng-template #tripsCard>
   <trip-card *ngFor="let trip of trips" [trip]="trip" [ngClass]="'carousel-cell'"></trip-card>
   <p *ngIf="trips.length === 0" class="text-center text">You have no trips yet.</p>
 </ng-template>

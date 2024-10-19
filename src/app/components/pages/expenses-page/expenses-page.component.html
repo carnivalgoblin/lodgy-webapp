@@ -3,8 +3,17 @@
 <div class="container expense-container">
   <h2 class="text-center text">All your expenses</h2>
   <div class="carousel">
-    <expense-card *ngFor="let expense of expenses" [expense]="expense" [ngClass]="'carousel-cell'"></expense-card>
+    <ng-container *ngIf="isLoading; else expensesCard">
+      <div class="spinner">
+        <mat-spinner color="accent" diameter="50"></mat-spinner>
+      </div>
+    </ng-container>
   </div>
 </div>
 
 <fab-button></fab-button>
+
+<ng-template #expensesCard>
+  <expense-card *ngFor="let expense of expenses" [expense]="expense" [ngClass]="'carousel-cell'"></expense-card>
+  <p *ngIf="expenses.length === 0" class="text-center text">You have no expenses yet.</p>
+</ng-template>
