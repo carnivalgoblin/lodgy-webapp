@@ -16,6 +16,9 @@ export class GlobalConstants {
     { path: '/profile', label: 'Profile'}
   ];
 
+  // App Title
+  public static appTitle = "Lodgy";
+
   // Date Format
   public static dateOptions = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
 

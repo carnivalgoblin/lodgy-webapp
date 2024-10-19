@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {GlobalConstants} from "../../global/global-constants";
 
 @Component({
   selector: 'app-landing',
@@ -15,4 +16,6 @@ export class LandingComponent implements OnInit{
       }, 1);
     }
   }
+
+  protected readonly GlobalConstants = GlobalConstants;
 }

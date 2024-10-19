@@ -57,4 +57,5 @@ export class LoginComponent implements OnInit{
   }
 
   protected readonly isDevMode = isDevMode;
+  protected readonly GlobalConstants = GlobalConstants;
 }

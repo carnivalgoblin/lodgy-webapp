@@ -52,4 +52,6 @@ export class RegisterComponent {
         }
       );
   }
+
+  protected readonly GlobalConstants = GlobalConstants;
 }
