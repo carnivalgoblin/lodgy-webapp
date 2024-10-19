@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, isDevMode} from '@angular/core';
 import {GlobalConstants} from "../../../global/global-constants";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../services/auth.service";
@@ -54,4 +54,5 @@ export class RegisterComponent {
   }
 
   protected readonly GlobalConstants = GlobalConstants;
+  protected readonly isDevMode = isDevMode;
 }

@@ -1,6 +1,4 @@
-<app-navigation [links]="navbarLinks"></app-navigation>
-
-<p *ngIf="isDevMode()">TODO: Remove nav when backend is up. Temporary workaround to get to components behind login</p>
+<app-navigation *ngIf="isDevMode()" [links]="navbarLinks"></app-navigation>
 
 <div class="container login-container">
   <h2 class="text">Login to</h2>
