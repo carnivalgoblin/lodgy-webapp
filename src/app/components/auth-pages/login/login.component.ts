@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, isDevMode, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "../../../services/auth.service";
 import {GlobalConstants} from "../../../global/global-constants";
@@ -55,4 +55,6 @@ export class LoginComponent implements OnInit{
         }
       );
   }
+
+  protected readonly isDevMode = isDevMode;
 }

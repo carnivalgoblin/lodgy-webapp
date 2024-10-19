@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, isDevMode, OnInit} from '@angular/core';
 import {Trip} from "../../models/trip";
 import {Expense} from "../../models/expense";
 import {AuthService} from "../../services/auth.service";
@@ -97,4 +97,5 @@ export class ProfileComponent implements OnInit{
 
   }
 
+  protected readonly isDevMode = isDevMode;
 }

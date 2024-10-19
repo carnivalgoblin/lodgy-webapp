@@ -6,6 +6,8 @@
   <p class="text">This is your profile. You can see your two latest trips and expenses as well as a summary here. <br>
   Click on a trip or expense to see more info or navigate to complete lists through the navigation bar.</p>
 
+  <button mat-raised-button routerLink="/" style="margin: 0 auto;" class="button" *ngIf="isDevMode()">Landing</button>
+
   <h3 class="text text-bold">Your summary</h3>
   <div class="summary-grid">
     <summary-card *ngFor="let summary of summaries" [summary]="summary" [ngClass]="'grid-card'"></summary-card>
