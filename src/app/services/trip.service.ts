@@ -71,4 +71,9 @@ export class TripService {
     return this.http.delete<any>(url, { withCredentials: true });
   }
 
+  createTrip(trip: Trip) {
+    const url =`${this.tripURL}/create`;
+    return this.http.post<Trip>(url, trip, { withCredentials: true })
+  }
+
 }

@@ -55,7 +55,7 @@ export class ProfileComponent implements OnInit{
   }
 
   get sortedAndSlicedTrips() {
-    const sortedTrips = this.trips.sort((a, b) => b.id - a.id);
+    const sortedTrips = this.trips.sort((a, b) => b.id! - a.id!);
 
     return sortedTrips.slice(0, 2);
 

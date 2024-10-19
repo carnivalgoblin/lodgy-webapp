@@ -14,7 +14,7 @@
   <button *ngIf="isParticipating" mat-raised-button class="button warn active" (click)="participate()">Don't Participate</button>
   <button *ngIf="!isParticipating" mat-raised-button class="button" (click)="participate()"> Participate</button><br><br>
   <button mat-raised-button class="button" (click)="addExpenses()">Add Expenses</button><br><br>
-  <button mat-raised-button class="button" (click)="distributeExpenses()">Distribute Expenses</button>
+  <button mat-raised-button class="button" [disabled]="isBeforeEndDate()" (click)="distributeExpenses()">Distribute Expenses</button>
 
 </div>
 

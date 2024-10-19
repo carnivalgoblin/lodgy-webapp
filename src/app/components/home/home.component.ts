@@ -20,7 +20,8 @@ export class HomeComponent {
   }
 
   ngOnInit(): void {
-    this.getTripsForUser();
+    // this.getTripsForUser();
+    this.getAllTrips();
     console.log(new Date().toJSON());
   }
 
@@ -35,6 +36,18 @@ export class HomeComponent {
         console.error('Error fetching trips', error);
       }
     });
+  }
+
+  getAllTrips() {
+    this.tripService.getTrips().subscribe({
+      next: (trips) => {
+        this.trips = trips;
+        this.initializeTrips();
+      },
+      error: (error) => {
+        console.error('Error fetching trips', error);
+      }
+    })
   }
 
   initializeTrips(): void {

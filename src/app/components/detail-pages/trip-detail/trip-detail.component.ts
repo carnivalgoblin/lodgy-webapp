@@ -206,4 +206,10 @@ export class TripDetailComponent implements OnInit {
     }
   }
 
+  isBeforeEndDate(): boolean {
+    const today = new Date();
+    const endDateParsed = this.endDate ? new Date(this.endDate) : null;
+    return endDateParsed ? today < endDateParsed : false;
+  }
+
 }
