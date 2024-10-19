@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {GlobalConstants} from "../global/global-constants";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import {Trip} from "../models/trip";
 import {Observable, shareReplay} from "rxjs";
 

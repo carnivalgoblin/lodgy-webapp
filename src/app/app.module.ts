@@ -15,7 +15,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {ProfileComponent} from './components/profile/profile.component';
-import {HttpClientModule} from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import {TripCardComponent} from './components/cards/trip-card/trip-card.component';
 import {ExpenseCardComponent} from './components/cards/expense-card/expense-card.component';
 import {SummaryCardComponent} from './components/cards/summary-card/summary-card.component';
@@ -46,63 +46,57 @@ import {MatDialogActions, MatDialogContent, MatDialogTitle} from "@angular/mater
 
 registerLocaleData(localeDe);
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    LandingComponent,
-    RegisterComponent,
-    LoginComponent,
-    NavigationComponent,
-    ProfileComponent,
-    TripCardComponent,
-    ExpenseCardComponent,
-    SummaryCardComponent,
-    TripsPageComponent,
-    ExpensesPageComponent,
-    HomeComponent,
-    FabButtonComponent,
-    AddTripFabComponent,
-    AddExpenseFabComponent,
-    AddBeerFabComponent,
-    TripDetailComponent,
-    ExpenseDetailComponent,
-    AddTripModalComponent,
-    AddExpenseModalComponent,
-    UpdateExpenseModalComponent,
-    DistributionPageComponent,
-    TwoDecimalDirective,
-    DateRangeDialogComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    HttpClientModule,
-    NgOptimizedImage,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    MatTableModule,
-    BrowserAnimationsModule,
-    MatProgressSpinnerModule,
-    ReactiveFormsModule,
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions,
-  ],
-  providers: [
-    { provide: LOCALE_ID, useValue: 'de' }
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        LandingComponent,
+        RegisterComponent,
+        LoginComponent,
+        NavigationComponent,
+        ProfileComponent,
+        TripCardComponent,
+        ExpenseCardComponent,
+        SummaryCardComponent,
+        TripsPageComponent,
+        ExpensesPageComponent,
+        HomeComponent,
+        FabButtonComponent,
+        AddTripFabComponent,
+        AddExpenseFabComponent,
+        AddBeerFabComponent,
+        TripDetailComponent,
+        ExpenseDetailComponent,
+        AddTripModalComponent,
+        AddExpenseModalComponent,
+        UpdateExpenseModalComponent,
+        DistributionPageComponent,
+        TwoDecimalDirective,
+        DateRangeDialogComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatInputModule,
+        MatIconModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        NgOptimizedImage,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatNativeDateModule,
+        MatSelectModule,
+        MatTableModule,
+        BrowserAnimationsModule,
+        MatProgressSpinnerModule,
+        ReactiveFormsModule,
+        MatDialogTitle,
+        MatDialogContent,
+        MatDialogActions], providers: [
+        { provide: LOCALE_ID, useValue: 'de' },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule {
 
 }
