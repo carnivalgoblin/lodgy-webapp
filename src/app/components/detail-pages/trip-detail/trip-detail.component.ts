@@ -72,7 +72,7 @@ export class TripDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       const tripId = +params['id'];
       this.tripId = tripId;
-      console.log('Trip ID:', tripId);
+      // console.log('Trip ID:', tripId);
 
       // Call the getTrip method from the TripService
       this.tripService.getTrip(tripId).subscribe({
@@ -87,7 +87,7 @@ export class TripDetailComponent implements OnInit {
             this.isParticipating = true;
           }
 
-          console.log('Trip details fetched successfully: ', this.trip);
+          // console.log('Trip details fetched successfully: ', this.trip);
         },
         error: (error) => {
           console.error('Error fetching trip details', error);
@@ -108,7 +108,7 @@ export class TripDetailComponent implements OnInit {
   this.tripService.getUserTrips(this.tripId).subscribe(
     (data: any) => {
       this.userTripDTOs = data;
-      console.log('User trips fetched successfully: ', data);
+      // console.log('User trips fetched successfully: ', data);
     });
   }
 
@@ -164,7 +164,7 @@ export class TripDetailComponent implements OnInit {
           if (result) {
             this.tripService.joinTrip(this.tripId, this.userId, result).subscribe({
               next: (data) => {
-                console.log('Joined trip:', data);
+                // console.log('Joined trip:', data);
                 this.snackbarService.openSnackbar('Joined trip');
               },
               error: (error) => {

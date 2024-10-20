@@ -39,7 +39,7 @@ export class ExpenseDetailComponent implements OnInit{
           this.expense = data;
           this.getTripForExpense();
 
-          console.log('Expense details fetched successfully: ' + this.expense.description);
+          // console.log('Expense details fetched successfully: ' + this.expense.description);
         },
         error => {
           console.error('Error fetching expense details', error);
