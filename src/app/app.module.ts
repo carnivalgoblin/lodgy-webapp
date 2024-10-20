@@ -43,6 +43,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {TwoDecimalDirective} from './directives/two-decimal.directive';
 import {DateRangeDialogComponent} from './components/modals/date-range-dialog/date-range-dialog.component';
 import {MatDialogActions, MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
+import { AdminUsersPageComponent } from './components/pages/admin-page/admin-users-page.component';
+import {MatCheckbox} from "@angular/material/checkbox";
 
 registerLocaleData(localeDe);
 
@@ -70,30 +72,31 @@ registerLocaleData(localeDe);
         UpdateExpenseModalComponent,
         DistributionPageComponent,
         TwoDecimalDirective,
-        DateRangeDialogComponent
+        DateRangeDialogComponent,
+        AdminUsersPageComponent
     ],
     bootstrap: [AppComponent], imports: [BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        MatCardModule,
-        MatInputModule,
-        MatIconModule,
-        MatButtonModule,
-        MatSnackBarModule,
-        NgOptimizedImage,
-        MatDatepickerModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatNativeDateModule,
-        MatSelectModule,
-        MatTableModule,
-        BrowserAnimationsModule,
-        MatProgressSpinnerModule,
-        ReactiveFormsModule,
-        MatDialogTitle,
-        MatDialogContent,
-        MatDialogActions], providers: [
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    NgOptimizedImage,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatTableModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions, MatCheckbox], providers: [
         { provide: LOCALE_ID, useValue: 'de' },
         provideHttpClient(withInterceptorsFromDi())
     ] })

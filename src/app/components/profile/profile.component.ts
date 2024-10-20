@@ -29,6 +29,8 @@ export class ProfileComponent implements OnInit{
 
   username: string = 'User';
 
+  isAdmin: boolean | null | undefined;
+
   constructor(
     private authService: AuthService,
     private tripService: TripService,
@@ -48,6 +50,7 @@ export class ProfileComponent implements OnInit{
 
     if (this.authService.isAuthenticated()) {
       this.username = localStorage.getItem('loggedUsername') as string;
+      this.isAdmin = localStorage.getItem('isAdmin') === 'true';
       // console.log('Username:', this.username);
     } else {
       console.error('JWT token not found in localStorage');

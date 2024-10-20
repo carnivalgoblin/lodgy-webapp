@@ -10,13 +10,14 @@ import {HomeComponent} from "./components/home/home.component";
 import {TripDetailComponent} from "./components/detail-pages/trip-detail/trip-detail.component";
 import {ExpenseDetailComponent} from "./components/detail-pages/expense-detail/expense-detail.component";
 import {DistributionPageComponent} from "./components/pages/distribution-page/distribution-page.component";
+import {AdminUsersPageComponent} from "./components/pages/admin-page/admin-users-page.component";
 
 const routes: Routes = [
   { path: '', component: LandingComponent, data: { hideNavigation: true } },
   { path: 'home', component: HomeComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent},
+  { path: 'profile', component: ProfileComponent,},
   { path: 'trips', component: TripsPageComponent},
   { path: 'expenses', component: ExpensesPageComponent},
   { path: 'trip/:id', component: TripDetailComponent,
@@ -24,7 +25,8 @@ const routes: Routes = [
       { path: 'distribute', component: DistributionPageComponent }
     ]
   },
-  { path: 'expense/:id', component: ExpenseDetailComponent}
+  { path: 'expense/:id', component: ExpenseDetailComponent},
+  { path: 'admin/users', component: AdminUsersPageComponent }
 ];
 
 @NgModule({

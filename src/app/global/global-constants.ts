@@ -16,6 +16,15 @@ export class GlobalConstants {
     { path: '/profile', label: 'Profile'}
   ];
 
+  // ADmin Navbar
+  public static adminNavbarLinks = [
+    { path: '/home', label: 'Home' },
+    { path: '/trips', label: 'Trips' },
+    { path: '/expenses', label: 'Expenses' },
+    { path: '/profile', label: 'Profile'},
+    { path: '/admin/users', label: 'Admin'}
+  ];
+
   // App Title
   public static appTitle = "Lodgy";
 

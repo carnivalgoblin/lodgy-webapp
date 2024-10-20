@@ -7,6 +7,7 @@
   Click on a trip or expense to see more info or navigate to complete lists through the navigation bar.</p>
 
   <button mat-raised-button routerLink="/" style="margin: 0 auto;" class="button" *ngIf="isDevMode()">Landing</button>
+  <button mat-raised-button routerLink="/admin/users" style="margin: 5px auto;" class="button" *ngIf="isAdmin">Admin</button>
 
   <h3 class="text text-bold">Your summary (currently a placeholder)</h3>
   <div class="summary-grid">

@@ -1,0 +1,66 @@
+<app-navigation [links]="navbarLinks"></app-navigation>
+
+<div>
+  <h2>Admin Users Management</h2>
+  <table mat-table [dataSource]="users" class="mat-elevation-z8">
+
+    <!-- Username Column -->
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef> Username </th>
+      <td mat-cell *matCellDef="let user"> {{ user.username }} </td>
+    </ng-container>
+
+    <!-- User Role Column -->
+    <ng-container matColumnDef="userRole">
+      <th mat-header-cell *matHeaderCellDef> User </th>
+      <td mat-cell *matCellDef="let user">
+        <mat-checkbox
+          [checked]="user.userRoles.includes('ROLE_USER')">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- Moderator Role Column -->
+    <ng-container matColumnDef="modRole">
+      <th mat-header-cell *matHeaderCellDef> MOD </th>
+      <td mat-cell *matCellDef="let user">
+        <mat-checkbox
+          [checked]="user.userRoles.includes('ROLE_MODERATOR')">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- Admin Role Column -->
+    <ng-container matColumnDef="adminRole">
+      <th mat-header-cell *matHeaderCellDef> ADMIN </th>
+      <td mat-cell *matCellDef="let user">
+        <mat-checkbox
+          [checked]="user.userRoles.includes('ROLE_ADMIN')">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- Enabled Column -->
+    <ng-container matColumnDef="enabled">
+      <th mat-header-cell *matHeaderCellDef> Enabled </th>
+      <td mat-cell *matCellDef="let user">
+        <mat-checkbox
+          [(ngModel)]="user.enabled">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- Update Button Column -->
+    <ng-container matColumnDef="update">
+      <th mat-header-cell *matHeaderCellDef> Update </th>
+      <td mat-cell *matCellDef="let user">
+        <button mat-button (click)="updateUser(user)">Save</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['username', 'userRole', 'modRole', 'adminRole', 'enabled', 'update']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['username', 'userRole', 'modRole', 'adminRole', 'enabled', 'update'];"></tr>
+  </table>
+
+
+</div>

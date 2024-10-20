@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {GlobalConstants} from "../global/global-constants";
-import { HttpClient } from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, of, shareReplay, tap} from "rxjs";
+import {User} from "../models/user";
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,11 @@ export class UserService {
     return this.user$;
   }
 
+  getAllUsers(): Observable<User[]> {
+    const url = `${this.userURL}/all`;
+    return this.http.get<User[]>(url, { withCredentials: true })
+  }
+
   getUsernames():  Observable<{ id: number; username: string }[]> {
     const url = `${this.userURL}/all/usernames`;
 
@@ -44,5 +50,10 @@ export class UserService {
         return of([]);
       })
     );
+  }
+
+  updateUser(user: User): Observable<User> {
+    const url = `${this.userURL}/update`;
+    return this.http.put<User>(url, user, { withCredentials: true });
   }
 }
