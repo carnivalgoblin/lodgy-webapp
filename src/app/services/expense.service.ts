@@ -39,4 +39,9 @@ export class ExpenseService {
     const params = new HttpParams().set('tripId', tripId);
     return this.http.post(url, expense, { params, withCredentials: true });
   }
+
+  deleteExpense(id: number) {
+    const url = `${this.expenseURL}/delete/${id}`;
+    return this.http.delete(url, { withCredentials: true });
+  }
 }
