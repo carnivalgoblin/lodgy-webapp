@@ -50,7 +50,7 @@ export class DateRangeDialogComponent implements OnInit{
     }
 
     const timeDifference = Math.abs(endDate.getTime() - startDate.getTime());
-    this.numberOfDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
+    this.numberOfDays = Math.floor(timeDifference / (1000 * 3600 * 24)) + 1;
   }
 
   subscribeToFormChanges(): void {
