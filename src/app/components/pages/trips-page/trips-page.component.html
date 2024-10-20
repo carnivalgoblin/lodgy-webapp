@@ -1,15 +1,23 @@
 <app-navigation [links]="navbarLinks"></app-navigation>
 
+<div class="container">
+  <div class="upcoming-current-trips-container" *ngIf="currentTrip">
+    <h2 class="text-center text">You are currently on this trip</h2>
+    <div class="carousel">
+      <trip-card [trip]="currentTrip"></trip-card>
+    </div>
+  </div>
 
-<div class="trips-container container">
-  <h2 class="text-center text">All your trips</h2>
-  <div class="carousel">
-    <ng-container *ngIf="isLoading; else tripsCard">
-      <div class="spinner">
-        <mat-spinner color="accent" diameter="50"></mat-spinner>
-      </div>
-    </ng-container>
 
+  <div class="upcoming-current-trips-container">
+    <h2 class="text-center text">All your trips</h2>
+    <div class="carousel">
+      <ng-container *ngIf="isLoading; else tripsCard">
+        <div class="spinner">
+          <mat-spinner color="accent" diameter="50"></mat-spinner>
+        </div>
+      </ng-container>
+    </div>
   </div>
 </div>
 

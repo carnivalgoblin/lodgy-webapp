@@ -12,6 +12,7 @@ import {AuthService} from "../../../services/auth.service";
 export class TripsPageComponent implements OnInit{
 
   trips: Trip[] = [];
+  currentTrip?: Trip;
   navbarLinks = GlobalConstants.navbarLinks;
   isLoading: boolean = true;
 
@@ -39,11 +40,30 @@ export class TripsPageComponent implements OnInit{
       next: (trips) => {
         this.trips = trips;
         this.sortTrips();
+        this.currentTrip = this.getCurrentTrip();
         this.isLoading = false;
       },
       error: (error) => {
         console.error('Error fetching trips', error);
       }
     });
+  }
+
+  getCurrentTrip(): Trip | undefined {
+    const today = new Date();
+
+    const activeTrips = this.trips.filter(trip => {
+      const startDate = new Date(trip.startDate);
+      const endDate = new Date(trip.endDate);
+      return today >= startDate && today <= endDate;
+    });
+
+    return activeTrips.length > 0
+      ? activeTrips.reduce((earliest, trip) => {
+        const earliestStartDate = new Date(earliest.startDate);
+        const currentStartDate = new Date(trip.startDate);
+        return currentStartDate < earliestStartDate ? trip : earliest;
+      })
+      : undefined;
   }
 }

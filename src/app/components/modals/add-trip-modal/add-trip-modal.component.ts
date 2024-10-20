@@ -36,6 +36,7 @@ export class AddTripModalComponent {
           console.log('Trip added:', response);
           this.snackbarService.openSnackbar('Trip added');
           this.dialogRef.close();
+          window.location.reload();
         },
         error: (error) => {
           console.error('Error adding trip', error);

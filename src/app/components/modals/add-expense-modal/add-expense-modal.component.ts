@@ -98,6 +98,7 @@ export class AddExpenseModalComponent implements OnInit{
         console.log('Expense added:', response);
         this.snackbarService.openSnackbar('Expense added');
         this.dialogRef.close();
+        window.location.reload();
       },
       error: (error) => {
         console.error('Error adding expense', error);
