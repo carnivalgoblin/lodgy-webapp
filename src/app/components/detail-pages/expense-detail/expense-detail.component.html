@@ -5,10 +5,10 @@
 
   <div class="expense-details card">
 <!--    <p class="text">Name: {{ expense?.name }}</p>-->
-    <p class="text">Amount: {{ expense?.amount }}</p>
+    <p class="text">Amount: {{ expense.amount }}</p>
     <p class="text">Trip: {{ trip?.destination }} - {{ trip?.startDate | date: 'y'}}</p>
 <!--    <p class="text">UserID: {{ expense?.userId }}</p>-->
-    <p class="text">Description: {{ expense?.description }}</p>
+    <p class="text">Description: {{ expense.description }}</p>
   </div>
   <br>
   <button mat-raised-button class="button" (click)="updateExpense()">Update Expense</button><br><br>

@@ -8,21 +8,32 @@
 
   <button mat-raised-button routerLink="/" style="margin: 0 auto;" class="button" *ngIf="isDevMode()">Landing</button>
 
-  <h3 class="text text-bold">Your summary</h3>
+  <h3 class="text text-bold">Your summary (currently a placeholder)</h3>
   <div class="summary-grid">
     <summary-card *ngFor="let summary of summaries" [summary]="summary" [ngClass]="'grid-card'"></summary-card>
   </div>
 
-  <h3 class="text text-bold">Trips</h3>
-  <div class="carousel">
-    <trip-card *ngFor="let trip of sortedAndSlicedTrips" [trip]="trip" [ngClass]="'carousel-cell'"></trip-card>
-  </div>
+  <div *ngIf="sortedAndSlicedTrips.length > 0 || sortedAndSlicedExpenses.length > 0">
+    <!-- Trips Section -->
+    <div *ngIf="sortedAndSlicedTrips.length > 0">
+      <h3 class="text text-bold">Trips</h3>
+      <div class="carousel">
+        <trip-card *ngFor="let trip of sortedAndSlicedTrips" [trip]="trip" [ngClass]="'carousel-cell'"></trip-card>
+      </div>
+    </div>
+    <p *ngIf="sortedAndSlicedTrips.length === 0" class="text-center text">You have no trips yet.</p>
 
-  <h3 class="text text-bold">Expenses</h3>
-  <div class="carousel">
-    <expense-card *ngFor="let expense of sortedAndSlicedExpenses" [expense]="expense" [ngClass]="'carousel-cell'"></expense-card>
+    <!-- Expenses Section -->
+    <div *ngIf="sortedAndSlicedExpenses.length > 0">
+      <h3 class="text text-bold">Expenses</h3>
+      <div class="carousel">
+        <expense-card *ngFor="let expense of sortedAndSlicedExpenses" [expense]="expense" [ngClass]="'carousel-cell'"></expense-card>
+      </div>
+    </div>
+    <p *ngIf="sortedAndSlicedExpenses.length === 0" class="text-center text">You have no expenses yet.</p>
   </div>
 
 </div>
+
 
 <fab-button></fab-button>
