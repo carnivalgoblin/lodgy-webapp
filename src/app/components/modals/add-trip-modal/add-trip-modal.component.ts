@@ -26,8 +26,8 @@ export class AddTripModalComponent {
   onAddTrip() {
     const trip = {
       destination: this.tripDestination!,
-      startDate: this.tripStartDate!,
-      endDate: this.tripEndDate!,
+      startDate: new Date(this.tripStartDate!.setHours(0, 0, 0, 0)),
+      endDate: new Date(this.tripEndDate!.setHours(23, 59, 59, 999)),
       description: this.tripDescription
     }
     this.tripService.createTrip(trip)
