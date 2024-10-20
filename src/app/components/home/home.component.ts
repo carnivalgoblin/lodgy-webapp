@@ -22,7 +22,7 @@ export class HomeComponent {
   ngOnInit(): void {
     // this.getTripsForUser();
     this.getAllTrips();
-    console.log(new Date().toJSON());
+    // console.log(new Date().toJSON());
   }
 
   getTripsForUser() {

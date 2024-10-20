@@ -39,8 +39,8 @@ export class ProfileComponent implements OnInit{
     this.getTripsForUser();
     this.getExpenses();
 
-    console.log(this.trips)
-    console.log(this.expenses)
+    // console.log(this.trips)
+    // console.log(this.expenses)
     this.getUsernameFromToken();
   }
 
@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit{
 
     if (this.authService.isAuthenticated()) {
       this.username = localStorage.getItem('loggedUsername') as string;
-      console.log('Username:', this.username);
+      // console.log('Username:', this.username);
     } else {
       console.error('JWT token not found in localStorage');
     }
@@ -82,7 +82,7 @@ export class ProfileComponent implements OnInit{
 
   getExpenses() {
     const userId = Number(localStorage.getItem('loggedUserId'));
-    console.log('Getting expenses for user with id:', userId);
+    // console.log('Getting expenses for user with id:', userId);
     this.expenseService.getExpensesByUserId(userId).subscribe((result) => {
       this.expenses = result;
     });

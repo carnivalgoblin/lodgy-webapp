@@ -31,15 +31,15 @@ export class ExpenseCardComponent implements OnInit{
         (data: Trip) => {
           this.trip = data;
           this.tripName = this.trip.destination + " - " + new Date(this.trip.startDate).getFullYear();
-          console.log('Trip details fetched successfully: ' + this.tripName);
+          // console.log('Trip details fetched successfully: ' + this.tripName);
         },
         error => {
-          console.error('Error fetching trip details', error);
+          // console.error('Error fetching trip details', error);
         }
       );
 
       this.tripName = this.trip?.destination + " " + this.trip?.startDate.getUTCFullYear();
-      console.log(this.trip)
+      // console.log(this.trip)
 
     }
   }

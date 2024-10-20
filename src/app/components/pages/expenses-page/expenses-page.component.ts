@@ -27,7 +27,7 @@ export class ExpensesPageComponent implements OnInit{
     this.authService.getCurrentUserId().subscribe((result: any) => {
       this.userId = result.id;
       this.getExpenses(this.userId);
-      console.log(this.userId);
+      // console.log(this.userId);
     });
   }
 
@@ -40,7 +40,7 @@ export class ExpensesPageComponent implements OnInit{
   }
 
   getExpenses(userId: number) {
-    console.log('Getting expenses for user with id:', userId);
+    // console.log('Getting expenses for user with id:', userId);
     this.expenseService.getExpensesByUserId(userId).subscribe({
       next: (expenses) => {
         this.expenses = expenses;

@@ -26,7 +26,7 @@ export class NavigationComponent {
   }
 
   ngOnInit() {
-    console.log(this.links)
+    // console.log(this.links)
   }
 
   @HostListener('window:scroll', [])
